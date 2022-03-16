@@ -1,0 +1,708 @@
+\section{An Application: \texorpdfstring{\\}{}Irreversible Statistical Mechanics}
+\label{sec:D}
+The calculation of an irreversible process usually involves three distinct stages;
+(1) Setting up an ``ensemble,'' i.e., choosing a density matrix $\rho(0)$, or an $N$-particle distribution function, which is to describe our initial knowledge about the system of interest;
+(2) Solving the dynamical problem; i.e., applying the microscopic equations of motion to obtain the time-evolution of the system $\rho(t)$;
+(3) Extracting the final physical predictions from the time-developed ensemble $\rho(t)$.
+
+Stage (3) has never presented any procedural difficulty; to predict the quantity $F$ from the ensemble $\rho$, one follows the practice of equilibrium theory, and computes the expectation value $\mean{F} = \Tr(\rho F)$.
+While the ultimate justification of this rule has been much discussed (ergodic theory), no alternative procedure has been widely used.
+
+In this connection, we note the following.
+Suppose we are to choose a number $f$, representing our estimate of the physical quantity $F$, based on the ensemble $\rho$.
+A reasonable criterion for the ``best'' estimate is that the expected square of the error, $\mean{(F-f)^2}$ shall be made a minimum.
+The solution of this simple variational problem is: $f = \mean{F}$.
+Thus, if we regard statistical mechanics, not in the ``classical'' sense of a means for calculating time averages in terms of ensemble averages, but rather as an example of statistical estimation theory based on the mean square error criterion, the usual procedure is uniquely determined as the optimal one, independently of ergodic theory.
+A justification not depending on ergodic theory is in any event necessary as soon as we try to predict the time variation of some quantity $F(t)$; for the physical phenomenon of interest then consists just of the fact that the ensemble average $\mean{F(t)}$ is \emph{not} equal to a time average.
+
+The dynamical problem of stage (2) is the most difficult to carry out, but it is also the one in which most recent progress has been booked (Green's function methods).
+While the present work is not primarily concerned with these techniques, they are available, and needed, in carrying out the calculations indicated here for all but the simplest problems.
+
+It is curious that stage (1), which must logically precede all the others, has received such scant attention since the pioneering work of Gibbs, in which the problem of ensemble construction was first recognized.
+Most recent discussions of irreversible processes concentrate all attention on stage (2); many fail to note even the existence of stage (1).
+One consequence of this is that the resulting theories apply unambiguously only to the case of ``response functions,'' in which the nonequilibrium state is one resulting from a dynamical perturbation (i.e., an explicitly given term in the Hamiltonian), starting from thermal equilibrium at some time in the past; the initial density matrix is then given by conventional equilibrium theory, and so the problem of ensemble construction is evaded.
+
+If, however, the nonequilibrium state is defined (as it usually is from the experimental standpoint) in terms of temperature or concentration gradients, rate of heat flow, shearing stress, sound wave amplitudes, etc., such a procedure does not apply, and one has resorted to various \emph{ad hoc} devices.
+An extreme example is provided by some problems in astrophysics, in which it is clear that the system of interest has never, in the age of the universe, been in a state approximating thermal equilibrium.
+Such cases have been well recognized as presenting special difficulties of principle.
+
+We show here that recognition of the existence of the stage (1) problem, and that its general solution is available, can remove such ambiguities and reduce the labor of stage (2).
+In the case of the nonequilibrium steady state, stage (2) can be dispensed with entirely if stage (1) has been properly treated.
+
+
+\subsection{Background}
+To achieve a certain unity within the present volume, we shall take the review article of \cite{mori}{Mori, Oppenheim, and Ross (1962)}---hereafter denoted MOR---as indicating the level to which nonequilibrium theory had been brought before the introduction of Information Theory notions.
+This work is virtually unique in that the Stage 1 problem, and even the term ``ensemble construction'' appear explicitly.
+The earlier work of Kirkwood, Green, Callen, Kubo and others, directly related to ours, is noted in MOR, Sec. 6.
+
+To fix ideas, consider the calculation of transport properties in systems close to equilibrium (although our final results will be far more general).
+In the treatments discussed by MOR, dissipative-irreversible effects did not appear in the ensemble initially set up.
+For example, a system of $N$ particles of mass $m$, distributed with macroscopic density $\rho(x)$, local temperature $T(x)$, is often described in classical theory by an $N$-particle distribution function, or Liouville function, of the form:
+\begin{equation}
+	\label{D1}
+	W_N(x_1 p_1 \ldots x_N p_N) = \prod_{i=1}^{N} \frac{\rho(x_i)}{Nm} [2\uppi m k T(x_i)]^{3/2} \exp\left(-\frac{p_i^2}{2 m k T(x_i)}\right)
+\end{equation}
+where $x_i$, $p_i$ denote the (vector) position and momentum of the $i$-th particle.
+But, although this distribution represents non-vanishing density and temperature gradients $\grad \rho$, $\grad T$, the diffusion current or heat flow computed from \eqref{D1} is zero.
+
+Likewise, in quantum theory MOR described such a physical situation by the ``local equilibrium,'' or ``frozen-state'' density matrix:
+\begin{equation}
+	\label{D2}
+	\rho_t = \frac{1}{Z} \exp\left(-\int\! \dd^3 x\; \beta(x)\left[H(x) - \mu(x) n(x)\right] \right)
+\end{equation}
+where $H(x)$, $n(x)$ are the Hamiltonian density and number density operators.
+Again, although \eqref{D2} describes gradients of temperature, concentration, and chemical potential, the fluxes computed from \eqref{D2} are zero.
+
+Mathematically, it was found that dissipative effects appear in the equations only after one has carried out the following operations: (a) approximate forward integration of the equations of motion for a short ``induction time,'' and (b) time smoothing or other coarse-graining of distribution functions or Heisenberg operators.
+
+Physically, it has always been somewhat of a mystery why either of these operations is needed; for one can argue that, in most experimentally realizable cases, irreversible flows (A) are already ``in progress'' at the time the experiment is started, and (B) take place slowly, so that the low~order distribution functions and expectation values of measurable quantities must be already slowly-varying functions of time and position; and thus not affected by coarse-graining.
+In cases where this is not true, coarse-graining would result in loss of the physical effects of interest.
+
+The real nature of the forward integration and coarse-graining operations is therefore obscure; in a correctly formulated theory neither should be required.
+We are led to suspect the choice of initial ensemble; i.e., that ensembles such as \eqref{D1} and \eqref{D2} do not fully describe the conditions under which irreversible phenomena are observed, and therefore do not represent the correct solution of the stage (1) problem.
+[We note that \eqref{D1} and \eqref{D2} were not ``derived'' from anything more fundamental; they were written down intuitively, by analogy with the grand canonical ensemble of equilibrium theory.]
+The forward integration and coarse-graining operations would, on this view, be regarded as corrective measures which in some way compensate for the error in the initial ensemble.
+
+This conclusion is in agreement with that of MOR.
+These authors never claimed that $\rho_t$, in \eqref{D2} was the correct density matrix, but supposed that it differed by only a small amount from another matrix $\rho(t)$, which they designate as the ``actual distribution.''
+They further supposed that after a short induction time, $\rho_t$ relaxes into $\rho(t)$, which would explain the need for forward integration.
+
+Such relaxation undoubtedly takes place in the low-order distribution functions derived from $\rho$, as was first suggested by Bogoliubov for the analogous classical problem.
+However, this is not possible for the full ``global'' density matrix; if $\rho_t$ and $\rho(t)$ differ at $t = 0$ and undergo the same unitary transformation in their time development, they cannot be equal at any other time.
+Furthermore, $\rho(t)$ was never uniquely defined; given two different candidates $\rho_1(t)$, $\rho_2(t)$ for this role, MOR give no criterion by which one could decide which is indeed the ``actual'' distribution.
+
+For reasons already explained in earlier Sections and in \cite{jaynes67}{Jaynes (1967)}, we believe that such criteria do not exist; i.e., that the notion of an ``actual distribution'' is illusory, since different density matrices connote only different states of knowledge.
+In the following Section we approach the problem in a different way, which yields a definite procedure for constructing a density matrix which is to replace $\rho_t$, and will play approximately the same role in our theory as the $\rho(t)$ of MOR.
+
+
+\subsection{The Gibbs Algorithm}
+If the above reasoning is correct, a reexamination of the procedures by which ensembles are set up in statistical mechanics is indicated.
+If we can find an algorithm for constructing density matrices which fully describe non-equilibrium conditions, we should find that transport and other dissipative effects are obtainable by direct quadratures over the initial ensemble.
+
+This algorithm, we suggest, was given already by \cite{gibbs}{Gibbs (1902)}.
+The great power and scope of the methods he introduced have not been generally appreciated to this day; until recently it was scarcely possible to understand the rationale of his method for constructing ensembles.
+This was (\emph{loc. cit.}, p.~143) to assign that probability distribution which, while agreeing with what is known, ``gives the least value of the average index of probability of phase,'' or as we would describe it today, \emph{maximizes the entropy}.
+This process led Gibbs to his canonical ensemble for describing closed systems in thermal equilibrium, the grand canonical ensemble for open systems, and (\emph{loc. cit.}, p.~38) an ensemble to represent a system rotating at angular velocity a in which the probability density is proportional to
+\begin{equation}
+	\label{D3}
+	\exp[-\beta(H-\vec{\omega}\cdot\vec{M})]
+\end{equation}
+where $H$, $M$ are the phase functions representing Hamiltonian and total angular momentum.
+
+Ten years later, the \cite{ehrenfest}{Ehrenfests (1912)} dismissed these ensembles as mere ``analytical tricks,'' devoid of any real significance, and asserted the physical superiority of Boltzmann's methods, thereby initiating a school of thought which dominated statistical mechanics for decades.
+It is one of the major tragedies of science that Gibbs did not live long enough to answer these objections, as he could have so easily.
+
+The mathematical superiority of the canonical and grand canonical ensembles for calculating equilibrium properties has since become firmly established.
+Furthermore, although Gibbs gave no applications of the rotational ensemble \eqref{D3}, it was shown by \cite{heims}{Heims and Jaynes (1962)} that this ensemble provides a straightforward method of calculating the gyromagnetic effects of Barnett and Einstein-de Haas.
+At the present time, therefore, like Gibbs methods---like the Laplace methods and the Jeffreys methods---stand in a position of proven success in applications, independently of all the conceptual problems regarding their justification, which are still being debated.
+
+The development of Information Theory made it possible to see the method of Gibbs as a general procedure for inductive reasoning, independent of ergodic theory or any other physical hypotheses, and whose range of validity is therefore not restricted to equilibrium problems; or indeed to physics.
+In the following we show that the Principle of Maximum Entropy is sufficient to construct ensembles representing a wide variety of nonequilibrium conditions, and that these new ensembles yield transport coefficients by direct quadratures.
+Indeed, we shall claim---for reasons already explained in \cite{jaynes57}{Jaynes (1957b)}, that this is the \emph{only} principle needed to construct ensembles which predict any experimentally reproducible effect, reversible or irreversible.
+
+The general rule for constructing ensembles is as follows.
+The available information about the state of a system consists of results of various macroscopic measurements.
+Let the quantities measured be represented by the operators $F_1,F_2 \ldots F_m$.
+The results of the measurements are, of course, simply a set of \emph{numbers}: $\{f_1, \ldots, f_m\}$.
+These numbers make no reference to any probability distribution.
+The ensemble is then a \emph{mental construct} which we invent in order to describe the range of possible microscopic states compatible with those numbers, in the following sense.
+
+If we say that a density matrix $\rho$ ``contains'' or ``agrees with'' certain information, we mean by this that, if we communicate the density matrix to another person he must be able, by applying the usual procedure of stage (3) above, to recover this information from it.
+In this sense, evidently, the density matrix agrees with the given information if and only if it is adjusted to yield expectation values equal to the measured numbers:
+\begin{equation}
+	\label{D4}
+	f_k = \Tr(\rho F_k) = \mean{F_k}, \qquad k = 1,\ldots, m
+\end{equation}
+and in order to ensure that the density matrix describes the full range of possible microscopic states compatible with \eqref{D4}, and not just some arbitrary subset of them (in other words, that it describes only the information given, and contains no hidden arbitrary assumptions about the microscopic state), we demand that, while satisfying the constraints \eqref{D4}, it shall maximize the quantity
+\begin{equation}
+	\label{D5}
+	S_I = - \Tr(\rho \log \rho)
+\end{equation}
+A great deal of confusion has resulted from the fact that, for decades, the single word ``entropy'' has been used interchangeably to stand for either the quantity \eqref{D5} or the quantity measured experimentally (in the case of closed systems) by the integral of $\dd Q/T$ over a reversible path.
+We shall try to maintain a clear distinction here by following the usage introduced in my 1962 Brandeis lectures (\cite{jaynes63b}{Jaynes, 1963b}); referring to $S_I$ as the ``information entropy'' and denoting the experimentally measured entropy by $S_E$.
+These quantities are different in general; in the equilibrium case (the only one for which $S_E$ is defined in conventional thermodynamics) the relation between them was shown (\emph{loc. cit.}) to be: for all density matrices $\rho$ which agree with the macroscopic information that defines the thermodynamic state; i.e., which satisfy \eqref{D4},
+\begin{equation}
+	\label{D6}
+	k S_I \leq S_E
+\end{equation}
+where $k$ is Boltzmann's constant, with equality in \eqref{D6} if and only if $S_I$ is computed from the canonical density matrix
+\begin{equation}
+	\label{D7}
+	\rho = \frac{1}{Z(\lambda_1 \ldots \lambda_m)} \exp(\lambda_1 F_1 + \cdots + \lambda_m F_m)
+\end{equation}
+where the $\lambda_k$ are unspecified real constants.
+In the nonequilibrium theory we find it easier to change our sign convention, so that all $\lambda$'s here are the negative of the usual ones; otherwise, from this point on it would be invariably $(-\lambda)$ rather than $\lambda$ that we need.
+For normalization ($\Tr \rho = 1$) we have
+\begin{equation}
+	\label{D8}
+	Z(\lambda_1 \ldots \lambda_m) = \Tr \exp(\lambda_1 F_1 + \cdots + \lambda_m F_m)
+\end{equation}
+which quantity will be called the partition function.
+It remains only to choose the $\lambda_k$, [which appear as Lagrange multipliers in the derivation of \eqref{D7} from a variational principle} so that \eqref{D4} is satisfied.
+This is the case of
+\begin{equation}
+	\label{D9}
+	f_k = \mean{F_k} = \pdv*{\log Z}{\lambda_k}, \qquad k = 1, \ldots, m
+\end{equation}
+
+If enough constraints are specified to determine a normalizable density matrix, it will be found that these relations are just sufficient to determine the unknowns $\lambda_k$, in terms of the given data $\{f_1 \ldots f_m\}$; indeed, we can then solve \eqref{D9} explicitly for the $\lambda_k$ as follows.
+The maximum attainable value of $S_I$ is, from \eqref{D7}, \eqref{D8},
+\begin{equation}
+	(S_I)_{\mathrm{max}} = \log Z - \sum_{k=1}^{m} \lambda_k \mean{F_k}
+\end{equation}
+If this quantity is expressed as a function of the given data, $S(f_1\ldots f_m)$, it is easily shown from the above relations that
+\begin{equation}
+	\lambda_k = - \pdv{S}{f_k}
+\end{equation}
+It has been shown (\cite{jaynes63b}{Jaynes, 1963b}, \cite{jaynes65}{1965}) that the second law o  thermodynamics, and a generalization thereof that tells which nonequilibrium states are accessible reproducibly from others, follow as simple consequences of the inequality \eqref{D6} and the dynamical invariance of $S_I$.
+
+We note an important property of the maximum entropy ensemble, which is helpful in gaining an intuitive understanding of this theory.
+Given any density matrix $\rho$ and any $\epsilon$ in $0 < \epsilon < 1$, one can define a ``high-probability linear manifold'' (HPM) of finite dimensionality $W(\epsilon)$, spanned by all eigenvectors of $\rho$ which have probability greater than a certain amount $\delta(\epsilon)$, and such that the eigenvectors of $\rho$ spanning the complementary manifold have total probability less than $\epsilon$.
+Viewed in another way, the HPM consists of all state vectors $\psi$ to which $\rho$ assigns an ``array probability'' as defined in \cite{jaynes57}{Jaynes (1957b)}, Sec.~7, greater than $\delta(\epsilon)$.
+Specifying the density matrix $\rho$ thus amounts to asserting that, with probability $(1-\epsilon)$, the state vector of the system lies somewhere in this HPM.
+As $\epsilon$ varies, any density matrix $\rho$ thus defines a nested sequence of HPM's.
+
+For a macroscopic system, the information entropy $S_I$ may be related to the dimensionality $W(\epsilon)$ of the HPM in the following sense: if $N$ is the number of particles in the system, then as $N \to \infty$ with the intensive parameters held constant, $N^{-1} S_I$ and $N^{-1} \log W(\epsilon)$ approach the same limit independently of $\epsilon$.
+This is a form of the asymptotic equipartition theorem of Information Theory, and generalizes Boltzmann's $S = k \log W$.
+The process of entropy maximization therefore amounts, for all practical purposes, to the same thing as finding the density matrix which, while agreeing with the available information, defines the largest possible HPM; this is the basis of the remark following \eqref{D4}.
+An analogous result holds in classical theory (\cite{jaynes65}{Jaynes, 1965}), in which $W(\epsilon)$ becomes the phase volume of the ``high-probability region'' of phase space, as defined by $N$-particle distribution function.
+
+The above procedure is sufficient to construct the density matrix representing equilibrium conditions, provided the quantities F, are chosen to be constants of the motion.
+The extension to nonequilibrium cases, and to equilibrium problems in which we wish to incorporate information about quantities which are not intrinsic constants of the motion (such as stress or magnetization) requires mathematical generalization which we give in two steps.
+
+It is a common experience that the course of a physical process does not in general depend only on the \emph{present} values of the observed macroscopic quantities; it depends also on the
+past history of the system.
+The phenomena of magnetic hysteresis and spin echoes are particularly striking examples of this.
+Correspondingly, we must expect that, if the $F_k$ are not constants of the motion, an ensemble constructed as above using only the present values of the $\mean{F_k}$ will not in general suffice to predict either equilibrium or nonequilibrium behavior.
+As we will see presently, it is just this fact which causes the error in the ``local equilibrium'' density matrix \eqref{D2}.
+
+In order to describe time variations, we extend the $F_k$ to the Heisenberg operators
+\begin{equation}
+	\label{D12}
+	F_k(t) = U\inv(t) F_k(0) U(t)
+\end{equation}
+in which the time-development matrix $U(t)$ is the solution of the Schrö\-dinger equation
+\begin{equation}
+	i\hbar \dot{U}(t) = H(t)U(t)
+\end{equation}
+with $U(0)=1$, and $H(t)$ is the Hamiltonian.
+If we are given data fixing the $\mean{F_k(t_i)}$ at various times $t_i$, then each of these must be considered a separate piece of information, to be given its Lagrange multiplier $\lambda_{ki}$ and included in the sum of \eqref{D7}.
+
+In the limit where we imagine information given over a continuous time interval, $-\tau < t < 0$, the summation over the time index $i$ becomes an integration and the canonical density matrix \eqref{D7} becomes
+\begin{equation}
+	\rho = \frac{1}{Z} \exp\left(\sum_{k=1}^{m} \int_{-\tau}^{0} \lambda_k(t) F_k(t) \dd t\right)
+\end{equation}
+where the partition function has been generalized to a partition \emph{functional}
+\begin{equation}
+	Z[\lambda_1(t) \ldots \lambda_m(t)] = \Tr \exp\left(\sum_{k=1}^{m} \int_{-\tau}^{0} \lambda_k(t) F_k(t) \dd t\right)
+\end{equation}
+and the unknown Lagrange multiplier functions $\lambda_k(t)$ are determined from the condition that the density matrix agree with the given data $\mean{F_k(t)}$ over the ``information-gathering'' time interval:
+\begin{equation}
+	\label{D16}
+	\mean{F_k(t)} = \Tr[\rho F_k(t)] = f_k(t), \qquad -\tau \leq t \leq 0
+\end{equation}
+By the perturbation methods developed below, we find that \eqref{D16} reduces to the natural generalization of \eqref{D9}:
+\begin{equation}
+	\label{D17}
+	\mean{F_k(t)} = \fdv*{\log Z}{\lambda_k(t)}, \qquad -\tau \leq t \leq 0
+\end{equation}
+where $\ddel$ denotes the functional derivative.
+
+Finally, if the operators $F_k$ depend on position as well as time, as in \eqref{D2}, Eq.~\eqref{D12} is changed to
+\begin{equation}
+	\label{D18}
+	F_k(x, t) = U\inv(t) F_k(x, 0) U(t)
+\end{equation}
+and the values of these quantities at each point of space and time now constitute the independent pieces of information, which are coupled into the density matrix via the Lagrange multiplier function $\lambda_k(x,t)$. If we are given macroscopic information about $F_k(x, t)$ throughout a space-time region $R_k$ (which can be a different region for different quantities $F_k$), the ensemble which incorporates all this information, while locating the largest possible HPM of microscopic states, is
+\begin{equation}
+	\label{D19}
+	\rho = \frac{1}{Z} \exp\,\left(\sum_{k} \int\limits_{R_k} \dd t \dd^3 x  \lambda_k(x, t) F_k(x, t) \right)
+\end{equation}
+with the partition functional
+\begin{equation}
+	\label{D20}
+	Z = \Tr \exp\,\left(\sum_{k} \int\limits_{R_k} \dd t \dd^3 x  \lambda_k(x, t) F_k(x, t) \right)
+\end{equation}
+and the $\lambda_k(x, t)$ determined from
+\begin{equation}
+	\label{D21}
+	\mean{F_k(x, t)} = \fdv*{\log Z}{\lambda_k(x, t)}, \qquad (x, t) \in R_k
+\end{equation}
+Prediction of any quantity $J(x, t)$ is then accomplished by calculating
+\begin{equation}
+	\label{D22}
+	\mean{J(z, t)} = \Tr [\rho J(x, t)]
+\end{equation}
+The form of equations \eqref{D19}--\eqref{D22} makes it appear that stages (1) and (2), discussed in the Introduction, are now fused into a single stage.
+However, this is only a consequence of our using the Heisenberg representation.
+According to the usual conventions, the Schrödinger and Heisenberg representations coincide at time $t=0$; thus we may regard the steps \eqref{D19}--\eqref{D21} equally well as determining the density matrix $\rho(0)$ in the Schrödinger representation; i.e., as solving the stage (1) problem.
+If, having found this initial ensemble, we switch to the Schrödinger representation, Eq.~\eqref{D22} is then replaced by
+\begin{equation}
+	\label{D23}
+	\mean{J(x)}_t = \Tr[J(x) \rho(t)]
+\end{equation}
+in which the problem of stage (2) now appears explicitly as that of finding the time-evolution of $\rho(t)$.
+The form \eqref{D23} will be more convenient if several different quantities $J_1, J_2, \ldots$ are to be predicted.
+
+
+\subsection{Discussion}
+In equations \eqref{D19}--\eqref{D23} we have the generalized Gibbs algorithm for calculating irreversible processes.
+They represent the three stages:
+(1) finding the ensemble which has maximum entropy subject to the given information about certain quantities $\{F_k(x, t)\}$;
+(2) Utilizing the full dynamics by working out the time evolution from the microscopic equations of motion;
+(3) making those predictions of certain other quantities of interest $\{J_i(x, t)\}$ which take all the above into account, and minimize the expected square of the error.
+We do not claim that the resulting predictions \emph{must} be correct; only that they are the best (by the mean-square error criterion) that could have been made from the information given; to do any better we would require more initial information.
+
+Of course this algorithm will break down, as it should, and refuse to give us any solution if we ask a foolish, unanswerable question; for example, if we fail to specify enough information to determine any normalizable density matrix, if we specify logically contradictory constraints, or if we specify space-time variations incompatible with the Hamiltonian of the system.
+
+The reader may find it instructive to work this out in detail for a very simple system involving only a $(2 \times 2)$ matrix; a single particle of spin $1/2$, gyromagnetic ratio $\gamma$, placed in a constant magnetic field $\vec{B}$ in the $z$-direction, Hamiltonian $H = -(1/2) \hbar \gamma (\vec{\sigma} \cdot \vec{B})$.
+Then the only dynamically possible behavior is uniform precession about $\vec{B}$ at the Larmor frequency $\omega_0 = \gamma B$.
+If we specify any time variation for $\mean{\sigma_x}$ other than sinusoidal at this frequency, the above equations will break down; while if we specify $\mean{\sigma_x(t)} = a \cos \omega_0 t  +  b \sin \omega_0 t$, we find a unique solution whenever $(a^2 + b^2) \leq 1$.
+
+Mathematically, whether the ensemble $\rho$ is or is not making a sharp prediction of some quantity $J$ is determined by whether the variance $\mean{J^2} - \mean{J}^2$ is sufficiently small.
+In general, information about a quantity $F$ would not suffice to predict some other quantity $J$ with deductive certainty (unless $J$ is a function of $F$).
+But in inductive reasoning, Information Theory tells us the precise extent to which information about $F$ is relevant to predictions of $J$.
+In practice, due to the enormously high dimensionality of the spaces involved, the variance $\mean{J^2} - \mean{J}^2$ usually turns out to be very small compared to any reasonable mean-square experimental error; and therefore the predictions are, for all practical purposes, deterministic.
+
+Experimentally, we impose various constraints (volume, pressure, magnetic field, gravitational or centrifugal forces, sound level, light intensity, chemical environment, etc.) on a system and observe how it behaves.
+But only when we reach the degree of control where reproducible response is observed, do we record our data and send it off for publication.
+Because of this sociological convention, it is not the business of statistical mechanics to predict everything that can be observed in nature; only what can be observed reproducibly.
+But the experimentally imposed macroscopic constraints surely do not determine any unique microscopic state; they ensure only that the state vector is somewhere in the HPM.
+If effect $A$ is, nevertheless, reproducible, then it must be that $A$ is characteristic of \emph{each} of the overwhelming majority of possible states in the HPM; and so averaging over those states will not change the prediction.
+
+To put it another way, the macroscopic experimental conditions still leave billions of microscopic details undetermined.
+If, nevertheless, some result is reproducible, then those details must have been \emph{irrelevant} to the phenomenon; and so with proper understanding we ought to be able to eliminate them mathematically.
+This is just what Information Theory does for us; it removes irrelevant details by averaging over them, while retaining what is relevant to the particular question being asked [i.e., the particular quantity $J(x,t)$ that we want to predict].
+
+
+It is clear, then, why the maximum entropy prescription works in such generality.
+If the constraints used in the calculation are the same as those actually operative in the experiment, then the maximum-entropy density matrix will locate the same HPM as did the experimental conditions; and will therefore make sharp predictions of any reproducible effect, provided that our assumed microscopic physics (enumeration of possible states, equations of motion) is correct.
+
+For these reasons---as stressed in Jaynes (\cite{jaynes57}{1957b})---if the class of phenomena predictable from the maximum entropy principle is found to differ in any way from the class of reproducible phenomena, that would constitute evidence for new microscopic laws of physics, not presently known.
+Indeed (Jaynes, \cite{jaynes68}{1968}) this is just what did happen early in this Century; the failure of Gibbs’ classical statistical mechanics to predict the correct heat capacities and vapor pressures provided the first clues pointing to the quantum theory.
+Any successes make this theory useful in an ``engineering'' sense; but for a research physicist its failures would be far more valuable than its successes.
+We emphasize that the basic physical and conceptual formulation of the theory is complete at this point; what follows represents only the working out of various mathematical consequences of this algorithm.
+
+
+\subsection{Perturbation Theory}
+For systems close to thermal equilibrium, the following general theorems are useful.
+We denote an ``unperturbed'' density matrix $\rho_0$ by
+\begin{equation}
+	\label{D24}
+	\rho_0 = \frac{e^A}{Z_0}, \qquad Z_0 \equiv \Tr(e^A)
+\end{equation}
+a ``perturbed'' one by
+\begin{equation}
+	\label{D25}
+	\rho_0 = \frac{e^{A + \epsilon B}}{Z}, \qquad Z \equiv \Tr(e^{A + \epsilon B})
+\end{equation}
+where $A$, $B$ are Hermitian.
+The expectation values of any operator $C$ over these ensembles are respectively
+\begin{equation}
+	\mean{C}_0 = \Tr(\rho_0 C), \qquad  \mean{C} = \Tr(\rho C)
+\end{equation}
+
+The cumulant expansion of $\mean{C}$ to all orders in $\epsilon$ is derived in Heims and Jaynes (\cite{heims}{1962}), Appendix B.
+The $n$-th order term may be written as a covariance in the unperturbed ensemble:
+\begin{equation}
+	\mean{C} - \mean{C}_0 = \sum_{n=1}^{\infty} \epsilon^n [\mean{Q_n C}_0  - \mean{Q_n}_0 \mean{C}_0]
+\end{equation}
+Here $Q_n$ is defined by $Q_1 \equiv S_1$ and
+\begin{equation}
+	Q_n \equiv S_n - \sum_{k=1}^{n-1} \mean{Q_k}_0 S_{n-k}, \qquad n > 1
+\end{equation}
+in which $S_n$ are the operators appearing in the well-known expansion
+\begin{equation}
+	e^{A + \epsilon B} = e^A \left[1 + \sum_{n=1}^{\infty} \epsilon^n S_n\right]
+\end{equation}
+More explicitly,
+\begin{equation}
+	S_n = \int_{0}^{1}\! \dd x_1 \int_{0}^{x}\! \dd x_2 \cdots \int_{0}^{x_{n-1}}\! \dd x_n B(x_1) \cdots B(x_n)
+\end{equation}
+where
+\begin{equation}
+	B(x) \equiv e^{-x A} B e^{x A}
+\end{equation}
+The first-order term is thus
+\begin{equation}
+	\label{D32}
+	\mean{C} - \mean{C}_0 = \epsilon \int_{0}^{1} \dd x [\mean{e^{-x A} B e^{x A} C}_0 - \mean{B}_0 \mean{C}_0]
+\end{equation}
+and it will appear below that all relations of linear transport theory are special cases of \eqref{D32}.
+
+For a more condensed notation, define the average of any operator $B$ over the sequence of similarity transformations as
+\begin{equation}
+	\label{D33}
+	\bar{B} = \int_{0}^{1}\! \dd x \, e^{-x A} B e^{x A}
+\end{equation}
+which we will call the \emph{Kubo transform} of B.
+Then \eqref{D32} becomes
+\begin{equation}
+	\label{D34}
+	\mean{C} - \mean{C}_0 = \epsilon K_{CB}
+\end{equation}
+in which, for various choices of $C$, $B$, the quantities
+\begin{equation}
+	K_{CB} \equiv \mean{\bar{B} C}_0 - \mean{\bar{B}}_0 \mean{C}_0
+\end{equation}
+are the basic covariance functions of the linear theory.
+
+We list a few useful properties of these quantities; in all cases, the result is proved easily by writing out the expressions in the representation where $A$ is diagonal.
+Let $F$, $G$ be any two operators; then
+\begin{align}
+	&\mean{\bar{F}_0} = \mean{F}_0\\
+	&K_{FG} = K_{GF}\label{D37}
+\end{align}
+If $F$, $G$ are Hermitian, then
+\begin{equation}
+	K_{FG} \text{ is real}, \qquad K_{FF} \geq 0
+\end{equation}
+If $\rho_0$ is a projection operator representing a pure state, then $K_{FG} = 0$.
+If $\rho_0$ is not a pure state density matrix, then with Hermitian $F$, $G$,
+\begin{equation}
+	K_{FF} K_{GG}  -  K_{FG}^2 \geq 0
+\end{equation}
+with equality if and only if $F = qG$, where $q$ is a real number.
+If $G$ is of the form
+\begin{equation}
+	G(u) = e^{-uA} G(0) e^{uA}
+\end{equation}
+then
+\begin{equation}
+	\label{D41}
+	\odv*{K_{FG}}{u} = \mean{[F, G]}_0
+\end{equation}
+This identity, with $u$ interpreted as a time, provides a general connection between statistical and dynamical problems.
+
+
+\subsection{Near-Equilibrium Ensembles}
+A closed system in thermal equilibrium is described, as usual, by the density matrix
+\begin{equation}
+	\rho_0 = \frac{e^{-\beta H}}{Z_0(\beta)}
+\end{equation}
+which maximizes $S_I$; for prescribed $\mean{H}$, and is a very special case of \eqref{D19}.
+The thermal equilibrium prediction for any quantity $F$ is, as usual,
+\begin{equation}
+	\mean{F}_0 = \Tr(\rho_0 F)
+\end{equation}
+But suppose we are now given the value of $\mean{F(t)}$ throughout the ``infor\-mation-gathering'' interval $-\tau \leq t \leq 0$.
+The ensemble which includes this new information is of the form \eqref{D19}, which maximizes $S_I$ for prescribed $\mean{H}$ and $\mean{F(t)}$.
+It corresponds to the partition functional
+\begin{equation}
+	\label{D44}
+	Z[\beta, \lambda(t)] = \Tr \exp \left(-\beta H + \int_{-\tau}^{0} \lambda(t) F(t) \dd t \right)
+\end{equation}
+If, during the information-gathering interval, this new information was simply $\mean{F(t)}$ = $\mean{F}_0$, it is easily shown from \eqref{D17} that we have identically
+\begin{equation}
+	\int_{-\tau}^{0} \lambda(t) F(t) \dd t = 0
+\end{equation}
+In words: if the new information is redundant (in the sense that it is only what we would have predicted from the old information), then it will drop out of the equations and the ensemble is unchanged.
+This is a general property of the formalism here presented.
+In applications it means that there is never any need, when setting up an ensemble, to ascertain whether the different pieces of information used are independent; any redundant parts will drop out automatically.
+
+If, therefore, we treat the integral in \eqref{D44} as a small perturbation, we are expanding in powers of the departure from equilibrium.
+For validity of the perturbation scheme it is not necessary that $\lambda(t) F(t)$ be everywhere small; it is sufficient if the integral is small.
+First-order effects in the departure from equilibrium, such as linear diffusion or heat flow, are then predicted using the general formula \eqref{D32}, with the choices $A = -\beta H$, and
+\begin{equation}
+	\epsilon B = \int_{-\tau}^{0} \lambda(t) F(t) \dd t
+\end{equation}
+
+With constant $H$, the Heisenberg operator $F(t)$ reduces to
+\begin{equation}
+	\label{D47}
+	F(t) = \exp (i H t / \hbar) F(0) \exp(- i H t/\hbar)
+\end{equation}
+and its Kubo transform \eqref{D33} becomes
+\begin{equation}
+	\bar{F}(t) = \frac{1}{\beta} \int_{0}^{\beta}\! \dd u\, F(t - i\hbar u)
+\end{equation}
+the characteristic quantity of the Kubo (\cite{kubo57}{1957}, \cite{kubo58}{1958}) theory.
+
+In the notation of \eqref{D34}, the first-order expectation value of any quantity $C(t)$ will then be given by
+\begin{equation}
+	\label{D49}
+	\mean{C(t)} - \mean{C}_0 = \int_{-\tau}^{0} K_{CF} (t, t') \lambda(t') \dd t'
+\end{equation}
+where $K_{CF}$ is now indicated as a function of the parameters $t, t'$ contained in the operators:
+\begin{equation}
+	K_{CF} \equiv \mean{F(t') C(t)}_0 - \mean{F}_0 \mean{C}_0
+\end{equation}
+Remembering that the parameters $t, t'$ are part of the operators $C, F$, the general reciprocity law \eqref{D37} now becomes
+\begin{equation}
+	K_{CF}(t, t') = K_{FC}(t, t')
+\end{equation}
+When $H$ is constant, it follows also from \eqref{D47} that
+\begin{equation}
+	K_{CF}(t, t') = K_{CF}(t - t')
+\end{equation}
+and \eqref{D41} becomes
+\begin{equation}
+	\label{D53}
+	i\hbar \pdv*{K_{CF}(t, t')}{t} = \mean{[C(t), F(t')]}_0
+\end{equation}
+
+\subsection*{Integral Equations for the Lagrange Multipliers}
+We wish to find the $\lambda_k(x, t)$ to first order in the given departures from equilibrium, $\mean{F_k(x, t)} - \mean{F_k(x, t)}_0$.
+This could be done by direct application of the formalism; by finding the perturbation expansion of $\log Z$ to second order in the $\lambda$'s and taking the functional derivative explicitly according to \eqref{D21}.
+It will be sufficient to do this for the simpler case described by Equations \eqref{D44}--\eqref{D53}; but on carrying through this calculation we discover that the result is already contained in our perturbation-theory formula \eqref{D49}.
+This is valid for any operator $C(t)$; and therefore in particular for the choice $C(t) = F(t)$.
+Then \eqref{D49} becomes
+\begin{equation}
+	\label{D54}
+	\int_{-\tau}^{0} K_{FF}(t, t') \lambda(t') \dd t' = \mean{F(t)} - \mean{F}_0
+\end{equation}
+If $t$ is in the ``information-gathering interval'' $(-\tau \leq t \leq 0)$ this is identical with what we get on writing out \eqref{D17} explicitly with $\log Z$ expanded to second order.
+In lowest order, then, taking the functional derivative of $\log Z$ has the effect of constructing a linear Fredholm integral equation for $\lambda(t)$, in which the ``driving force'' is the given departure from equilibrium.
+
+However, from that direct manner of derivation it would appear that \eqref{D54} applies \emph{only} when ($-\tau \leq t \leq 0)$; while the derivation of \eqref{D49} makes it clear that \eqref{D54} has a definite meaning for all $t$.
+When $t$ is in $-\tau \leq t \leq 0$, it represents the integral equation from which $\lambda(t)$ is to be determined; when $t > 0$, it represents the \emph{predicted future} of $F(t)$; and when $t < -\tau$, it represents the \emph{retrodicted past} of $F(t)$.
+
+If the information about $\mean{F(t)}$ is given in the entire past, $\tau = \infty$, \eqref{D54} becomes a Wiener-Hopf equation.
+Techniques for the solution, involving matching functions on strips in the complex fourier transform space are well known; we remark only that the solution $\lambda(t)$ will in general contain a $\delta$-function singularity at $t = 0$; it is essential to retain this in order to get correct physical predictions.
+In other words, the upper limit of integration in \eqref{D54} must be taken as $(0^+)$.
+The case of finite $\tau$, where we generally have $\delta$-functions at both end-points, is discussed by Middleton (\cite{middleton}{1960}).
+
+For example, with a Lorentzian correlation function
+\begin{equation}
+	\label{D55}
+	K_{FF}(t - t') = \frac{a}{2} \exp[-a \abs{t - t'}]
+\end{equation}
+and $\tau = \infty$, the solution is found to be
+\begin{equation}
+	\lambda(t) = \left(1 - \frac{1}{a^2}\odv[ord={2}]{}{t}\right) f(t) + \frac{1}{a^2} f(0) [a \delta(t) - \delta(t')]
+\end{equation}
+where
+\begin{equation}
+	f(t) \equiv
+		\begin{cases}
+			\mean{F(t)} - \mean{F}_0 &t \leq 0\\
+			0 & t > 0
+		\end{cases}
+\end{equation}
+Then we find
+\begin{equation}
+	\label{D58}
+	\int_{-\infty}^{0^+} K_{FF}(t - t') \lambda(t') \dd t' =
+		\begin{cases}
+			f(t) & t < 0\\
+			f(0) e^{-at} & t > 0
+		\end{cases}
+\end{equation}
+in which it is necessary to note the $\delta$-functions in $f(t)$ at the upper limit.
+The nature and need for these $\delta$-functions becomes clear if we approach the solution as the limit of the solutions for a sequence $\{f_n\}$ of ``good'' driving functions each of which satisfies the same boundary conditions as $K_{FF}$ at the upper limit:
+\begin{equation}
+	\left[f'_n(t) K_{FF}(t - t') - f_n(t') \pdv*{K_{FF}(t - t')}{t'}\right]_{t'=0} = 0, \qquad t < 0
+\end{equation}
+
+
+The result \eqref{D58} thus predicts the usual exponential approach back to equilibrium, with a relaxation time $\tau = a\inv$.
+The particular correlation function \eqref{D55} is ``Markoffian'' in that the predicted future decay depends only on the specified departure from equilibrium at $t = 0$; and not on information about its past history.
+With other forms of correlation function we get a more complicated prediction, with in general more than one relaxation time.
+
+
+\subsection{Relation to Wiener Prediction Theory}
+This problem is so similar conceptually to Wiener's (1949) problem of optimal prediction of the future of a random function whose past is given that one would guess them to be mathematically related.
+However, this is not obvious from the above, because the Wiener theory was stated in entirely different terms.
+In particular, it contained no quantity such as $\lambda(t)$ which enables us to express both the given past and predicted future of $F(t)$ in a single equation \eqref{D54}.
+To establish the connection between these two theories, and to exhibit an alternative form of our theory, we may eliminate $\lambda(t)$ by the following purely formal manipulations
+
+If the resolvent $K_{FF}\inv(t, t')$ of the integral equation \eqref{D54} can be found so that
+\begin{align}
+	&\int_{-\tau}^{0} K_{FF}(t, t'')  K_{FF}\inv (t'', t') \dd t'' = \delta(t - t'), \qquad -\tau \leq t, t' \leq 0\\
+	&\int_{-\tau}^{0} K_{FF}\inv(t, t'')  K_{FF}(t'', t') \dd t'' = \delta(t - t'), \qquad -\tau \leq t, t' \leq 0\label{D61}
+\end{align}
+then
+\begin{equation}
+	\lambda(t) = \int_{-\tau}^{0} K_{FF}\inv(t, t')  [\mean{F(t')} - \mean{F}_0] \dd t' \qquad -\tau \leq t \leq 0
+\end{equation}
+and the predicted value \eqref{D49} of any quantity $C(t)$ can be expressed directly as a linear combination of the given departures of $F$ from equilibrium:
+\begin{equation}
+	\label{D63}
+	\mean{C(t)} - \mean{C}_0 = \int_{-\tau}^{0} R_{CF}(t, t') [\mean{F(t')} - \mean{F}_0] \dd t'
+\end{equation}
+in which
+\begin{equation}
+	R_{CF}(t, t') \equiv \int_{-\tau}^{0} K_{CF}(t, t'') K_{FF}(t')\inv(t'', t') \dd t''
+\end{equation}
+will be called the \emph{relevance function}.
+
+In consequence of \eqref{D61}, the relevance function is itself the solution of an integral equation:
+\begin{equation}
+	\label{D65}
+	K_{CF}(t) = \int_{-\tau}^{0} R_{CF}(t, t') K_{FF}(t') \dd t', \qquad -\infty < t < \infty
+\end{equation}
+so that, in some cases, the final prediction formula \eqref{D63} can be obtained directly from \eqref{D65} without the intermediate step of calculating $\lambda(t)$.
+
+In the Wiener theory we have a random function $f(t)$ whose past is known.
+For any ``lead time'' $h > 0$, we are to try to predict the value of $f(t + h)$ by a linear operation on the past of $f(t)$, i.e., the prediction is
+\begin{equation}
+	\hat{f}(t + h) = \int_{0}^{\infty} f(t - t') W(t') \dd t'
+\end{equation}
+and the problem is to find that $W(t)$ which minimizes the mean square error of the prediction:
+\begin{equation}
+	I[W] = \lim_{T \to \infty} \frac{1}{T} \int_{-T}^{T} \abs*{f(t+h) - \hat{f}(t + h)}^2 \dd t
+\end{equation}
+We readily find that the optimal $W$ satisfies the Wiener-Hopf integral equation
+\begin{equation}
+	\label{D68}
+	\phi(t + h) = \int_{0}^{\infty} \phi(t - t') W(t') \dd t', \qquad t \geq 0
+\end{equation}
+where
+\begin{equation}
+	\label{D69}
+	\phi(t) = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} f(t + t') f(t') \dd t'
+\end{equation}
+is the autocorrelation function of $f(t)$, assumed known.
+
+Evidently, the response function $W(t)$ corresponds to our relevance function $R_{FF}(t, t')$; and to establish the formal identity of the two theories, we need only show that $R$ also satisfies the integral equation \eqref{D68}.
+But, with the choice $C(t) = F(t)$, this is included in \eqref{D65} making the appropriate changes in notation; our ``quantum covariance function'' $K_{FF}(t)$ corresponding to Wiener's autocorrelation function $\phi(t)$.
+In the early stages of this work, the discovery of the formal identity between Wiener's prediction theory and this special case of the maximum-entropy prediction theory was an important reassurance.
+
+The relevance function $R_{CF}(t, t')$ summarizes the precise, extent to which information about $F$ at time $t'$ is relevant to prediction of $C$ at time $t$.
+It is entirely different from the physical impulse-response function $\phi_{CF}(t - t')$ discussed, for example, by Kubo (\cite{kubo58}{1958}), Eq.~(2.18).
+The latter represents the dynamical response $\mean{C(t)} - \mean{C}_0$ at a time $t > t'$, to an impulsive force term in the Hamiltonian applied at $t = t'$: $H(t) = H_0 + F \delta(t-t')$, while in \eqref{D63} the ``input'' $\mean{F(t')}- \mean{F}_0$ consists only of \emph{information} concerning what the system, with a  fixed Hamiltonian but in a nonequilibrium state, was doing in the interval $-\tau \leq t' \leq 0$.
+This distinction is perhaps brought out most clearly by emphasizing again that \eqref{D63} is valid for an arbitrary time $t$, which may be before, within, or after this information-gathering interval.
+Thus, while our conception of causality is based on the postulate that a force applied at time $t'$ can exert physical influences only at \emph{later} times, there is no such limitation in \eqref{D63}.
+It therefore represents an explicit statement of the fact that, while \emph{physical influences} propagate only forward in time, \emph{logical inferences} propagate equally well in either direction; i.e., new information about the present affects our knowledge of the past as well as the future.
+Although relations such as \eqref{D63} have been rather rare in physics, the situation is, of course, commonplace in other fields; sciences such as geology depend on logical connections of this type.
+
+
+\subsection{Space-Time Variations}
+Suppose the particle density $n(x, t)$ departs slightly from its equilibrium value in a space-time region $R$.
+Defining $\ddel n(x, t) = n(x, t) - \mean{n(x)}_0$, the ensemble containing this information corresponds to the partition functional
+\begin{equation}
+	\label{D70}
+	Z[\beta, \lambda(x, t)] = \Tr \exp \left[-\beta H + \int\limits_{R} \lambda(x, t) \ddel n(x, t) \dd^3 x \dd t \right]
+\end{equation}
+and \eqref{D34} becomes
+\begin{equation}
+	\label{D71}
+	\mean{\ddel n(x, t)} = \int\limits_{R} K_{nn} (x - x'; t - t') \lambda(x, t) \dd^3 x' \dd t'
+\end{equation}
+
+When $(x, t)$ are in $R$ this represents the integral equation determining $\lambda(x', t')$; when $(x, t)$ are outside $R$ it gives the predicted nonequilibrium behavior of $\mean{n(x, t)}$ based on this information, and the predicted departure from equilibrium of any other quantity $J(x,t)$ is
+\begin{equation}
+	\label{D72}
+	\mean{J(x,t)} - \mean{J}_0 = \int\limits_{R} K_{Jn}(x - x'; t - t') \lambda(x, t)\dd^3 x' \dd t'
+\end{equation}
+To emphasize the generality of \eqref{D72}, note that it contains no limitation on time scale or space scale.
+Thus it encompasses both diffusion and ultrasonic propagation.
+
+In \eqref{D71} we see the deviation $\mean{\ddel n}$ expressed as a linear superposition of basic relaxation functions $K_{nn}(x, t) = \mean{\ddel \bar{n}(0, 0) \ddel \bar{n}(x, t)}$ with $\lambda(x', t')$ as the 	``source'' function.
+The class of different nonequilibrium ensembles based on information about $\mean{\ddel n}$ is in $1:1$ correspondence with different functions $\lambda(x, t)$.
+In view of the linearity, we may superpose elementary solutions in any way, and while to solve a problem with specific given information would require that we solve an integral equation, we can extract the general laws of nonequilibrium behavior from \eqref{D71}, \eqref{D72} without this, by considering $\lambda(x, t)$ as the independent variable.
+
+For example, let $J$ be the $\alpha$-component of particle current, and for brevity write the covariance function in \eqref{D72} as
+\begin{equation}
+	\label{D73}
+	\mean{\ddel \bar{n}(x', t') J_{\alpha} (x, t)}_0 = K_{\alpha}(x - x'; t - t')
+\end{equation}
+Now choose $R$ as all space and ail time $t < 0$, and take
+\begin{equation}
+	\label{D74}
+	\lambda(x, t) = \mu(x)\dot{q}(t), \qquad t < 0
+\end{equation}
+where $\mu(x)$, $q(t)$ are ``arbitrary'' functions (but of course, sufficiently well-behaved so that what we do with them makes sense mathematically).
+In this ensemble, the current is
+\begin{equation}
+	\label{D75}
+	\mean{J_\alpha (x, t)} = \int\! \dd^3 x'\, \mu(x') \int_{-\infty}^{0}\! \dd t'\, \dot{q}(t') K_{\alpha\beta} (x - x', t - t')
+\end{equation}
+Integrate by parts on $t$ and use the identity $\dot{n} + \nabla\cdot J = 0$: the RHS of \eqref{D75} becomes
+\begin{equation}
+	\int\! \dd^3 x'\, \mu(x')\, \left[q(0) K_\alpha(x - x', 0) + \pdv{}{x'_\beta} \int_{-\infty}^{0}\! \dd t\, q(t) K_{\alpha\beta}(x - x', t - t') \right]
+\end{equation}
+where $K_{\alpha\beta}$ is the current-current covariance:
+\begin{equation}
+	K_{\alpha\beta}(x - x', t - t') \equiv \mean{\bar{J}_\beta (x', t')\, J_{\alpha} (x, t)}_0
+\end{equation}
+But from symmetry $K_\alpha(x - x', 0) = 0$.
+Another integration by parts then yields
+\begin{equation}
+	\mean{J_\alpha (x, t)} = - \int_{-\infty}^{0}\! \dd t'\, q(t') \int\! \dd^3 x'\, K_{\alpha\beta} (x - x', t - t') \pdv{\mu}{x'_\beta}
+\end{equation}
+and thus far no approximations have been made.
+
+Now let us pass to the ``long wavelength'' limit by supposing $\mu(x)$ so slowly varying that $\pdif{}\mu/\pdif{}x'_\beta$ is essentially a constant over distances in which $K_{\alpha\beta}$ is appreciable:
+\begin{equation}
+	\mean{J_\alpha (x, t)} \simeq -\pdv{\mu}{x_\beta} \int_{-\infty}^{0}\! \dd t'\, q(t') \int\! \dd^3 x'\, K_{\alpha\beta} (x - x', t - t')
+\end{equation}
+and in the same approximation \eqref{D71} becomes
+\begin{equation}
+	\mean{\ddel n(x, t)} \simeq g(0) \mu(x) \int\! \dd^3 x'\, K_{nn}(x', 0)
+\end{equation}
+Therefore, the theory predicts the relation
+\begin{equation}
+	\label{D81}
+	\mean{J_\alpha} = -D_{\alpha\beta} \pdv*{\mean{\ddel n}}{x_\beta}
+\end{equation}
+with
+\begin{equation}
+	D_{\alpha\beta} \equiv \frac{\int_{-\infty}^{0}\! \dd t'\, q(t') \int\! \dd^3 x'\, K_{\alpha\beta}(x - x', t - t')}{q(0) \int\! \dd^3 x'\, K_{nn}(x - x', 0)}
+\end{equation}
+If the ensemble is also quasi-stationary, $q(t)$ very slowly varying, only the value of $q(t)$ near the upper limit matters, and the choice $q(t) = \exp(\epsilon t)$ is as good as any.
+This leads to just the Kubo expression for the diffusion coefficient.
+
+If instead of taking the long-wavelength limit we choose a plane wave: $\mu(x) = \exp(i k\cdot x)$, \eqref{D75}, \eqref{D71} become
+\begin{equation}
+	\mean{J_\alpha(x, t)} = e^{i k\cdot x} \int_{-\infty}^{0}\! \dd t'\, \dot{q}(t') K_\alpha (k, t - t')
+\end{equation}
+\begin{equation}
+	\label{D84}
+	\mean{\ddel n(x, t)} = e^{i k\cdot x} \int_{-\infty}^{0}\! \dd t'\, \dot{q}(t') K_{nn} (k, t - t')
+\end{equation}
+where $K_\alpha (k, t - t') $, $K_{nn} (k, t - t')$ are the space fourier transforms.
+These represent the decay of sound waves as linear superpositions of many characteristic decays $\sim  K_\alpha (k, t - t')$ , $K_{nn} (k, t - t')$ with various ``starting times'' $t'$.
+If we take time fourier transforms, \eqref{D84} becomes
+\begin{equation}
+	\label{D85}
+	\mean{\ddel n(x, t)} = e^{i k\cdot x} \int \frac{\dd \omega}{2\uppi} K_{nn}(k, \omega) Q(\omega) e^{-i\omega t}
+\end{equation}
+which shows how the exact details of the decay depend on the method of preparation (past history) as summarized by $Q(\omega)$.
+Now, however, we find that $K_{nn}(k, \omega)$ usually has a sharp peak at some frequency $\omega = \omega_0(k)$, which arises mathematically from a pole near the real axis in the complex $\omega$-plane.
+Thus if
+$\omega_1 = \omega_0 - i\alpha$ and $K_{nn}(k, \omega)$ has the form
+\begin{equation}
+	\label{D86}
+	K_{nn}(k, \omega) = \frac{-i K_1}{\omega - \omega_1} + \hat{K}(k, \omega)
+\end{equation}
+where $\hat{K}(k, \omega)$ is analytic in a neighborhood of $\omega_1$, this pole will give a contribution to the integral \eqref{D86} of
+\begin{equation}
+	\label{D87}
+	K_1 Q(\omega_1) e^{i (k\cdot x - \omega_0 t)} e^{-\alpha t}, \qquad t > 0
+\end{equation}
+Terms which arise from parts of $K_{nn}(k, \omega) Q(\omega)$ that are not sharply peaked as a function of $\omega$, decay rapidly and represent short transient effects that depend on the exact method of preparation.
+If $\alpha$ is small, the contribution \eqref{D87} will quickly dominate them, leading to a long-term attenuation and propagation velocity essentially independent of the method of preparation.
+
+Thus, the laws of ultrasonic dispersion and attenuation are contained in the location and width of the sharp peaks in $K_{nn}(k, \omega)$.
+
+
+\subsection*{Other Forms of the Theory}
+Thus far we have considered the application of maximum entropy in its most general form: given some arbitrary initial information, to answer an arbitrary question about reproducible effects.
+Of course, we may ask any question we please; but maximum entropy can make sharp predictions only of reproducible things (that is in itself a useful property; for maximum entropy can tell us which things are and are not reproducible, by the sharpness of its predictions).
+Maximum entropy separates out what is relevant for predicting reproducible phenomena, and discards what is irrelevant (we saw this even in the example of Wolf's die where, surely, the only reproducible events in his sample space of $6^{20\,000}$ points were the six face frequencies or functions of them; just the things that maximum entropy predicted).
+
+Likewise, in the stage 2 techniques of prediction from the maximum entropy distribution, if we are not interested in every question about reproducible effects, but only some ``relevant subset'' of them, we may seek a further elimination of details that are irrelevant to those particular questions.
+But this kind of problem has come up before in mathematical physics; and Dicke (1946) introduced an elegant projection operator technique for calculating desired external elements of a scattering matrix while discarding irrelevant internal details.
+Our present problem, although entirely different in physical and mathematical details, is practically identical formally; and so this same technique must be applicable.
+
+Zwanzig (\cite{zwanzig}{1962}) introduced projection operators for dealing with two interacting systems, only one of which is of interest, the other serving only as its ``heat bath.''
+Robertson (\cite{robertson}{1964}) recognized that this will work equally well for any kind of separation, not necessarily spatial; i.e., if we want to predict only the behavior of a few physical quantities $\{F_1 \ldots F_m\}$ we can introduce a projection operator $P$ which throws away everything that is irrelevant for predicting those particular things; allowing, in effect, everything else to serve as a kind of ``heat bath'' for them.
+
+In the statistical theory this dichotomy may be viewed in another way: instead of ``relevant'' and ``irrelevant'' read ``systematic'' and ``random.''
+Then, referring to Robertson's presentation in this volume, it is seen that Eq.~(9.3), which could be taken as the definition of his projection operator $P(t)$, is formally just the same as the solution of the problem of ``reduction of equations for condition'' given by Laplace for the optimal estimate of systematic effects.
+A modern version can be found in statistics textbooks, under the heading: ``multiple regression.''
+Likewise, his formulas (9.8), (9.9) for the ``subtracted correlation functions'' have a close formal correspondence to Dicke's final formulas.
+
+Of course, this introduction of projection operators is not absolutely required by basic principles; it is in the realm of art, and any work of art may be executed in more than one way.
+All kinds of changes in detail may still be thought of; but needless to say, most of them have been thought of already, investigated, and quietly dropped.
+Seeing how far Robertson has now carried this approach, and how many nice results he has uncovered, it is pretty clear that anyone who wants to do it differently has his work cut out for him.
+
+Finally, I should prepare the reader for his contribution.
+When Baldwin was a student of mine in the early 1960's, I learned that he has the same trait that Lagrange and Fermi showed in their early works: he takes delight in inventing tricky variational arguments, which seem at first glance totally wrong.
+After long, deep thought it always developed that what he did was correct after all.
+A beautiful example is his derivation of (4.3), where most readers would leave the track without this hint from someone with experience in reading his works: you are not allowed to take the trace and thus prove that $a=1$, invalidating (4.4), because this is a formal argument in which the symbol $\mean{F}$ stands for $\Tr(F\sigma)$ even when $\sigma$ is not
+normalized to $\Tr(\sigma) = 1$.
+For a similar reason, you are not allowed to protest that if $F_0 \equiv 1$, then $\ddel \mean{F_0} \equiv 0$.
+One of my mathematics professors once threw our class into an uproar by the same trick; evaluating an integral, correctly, by differentiating with respect to $\uppi$.
+For those with a taste for subtle trickery, variational mathematics is the most fun of all.

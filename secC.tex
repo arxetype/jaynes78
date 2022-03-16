@@ -1,0 +1,401 @@
+\clearpage
+\section{Speculations for the Future}
+\label{sec:C}
+The field of statistical Inference--in or out of Physics--is so wide that there is no hope of guessing every area in which new advances might be made.
+But we can indicate a few areas where progress may be predicted rather safely because it is already underway, with useful results being found at a rate proportional to the amount of effort invested.
+
+Current progress is taking place at several different levels:
+\begin{enumerate}
+	\item \label{li:c1.1} Application of existing techniques to existing problems
+	\item \label{li:c1.2} Extension of present theory to new problems.
+	\item \label{li:c1.3} More powerful mathematical methods.
+	\item \label{li:c1.4} Further development of the basic theory of inference.
+\end{enumerate}
+However, I shall concentrate on \ref{li:c1.1} and \ref{li:c1.4}, because \ref{li:c1.2} is so enveloped in fog that nothing can be seen clearly, and \ref{li:c1.3} seems to be rather stagnant except for development of new specialized computer techniques, which I am not competent even to describe, much less predict.
+
+There are important current areas that seem rather desperately in need of the same kind of house-cleaning that statistical mechanics has received.
+What they all have in common is: (a) long-standing problems, still unsolved after decades of mathematical efforts, (b) domination by a mental outlook that leads one to concentrate all attention on the analogs of ergodic theory.
+That is, in the belief that a probability is not respectable unless it is also a frequency, one attempts a direct calculation of frequencies, or tries to guess the right ``statistical assumption'' about frequencies, even though the available information does not consist of frequencies, but consists rather of partial knowledge of certain ``macroscopic'' parameters $\{\alpha_i\}$; and the predictions desired are not frequencies, but estimates of certain other parameters $\{\theta_i\}$.
+It is not yet realized that, by looking at the problems this way one is not making efficient use of probability theory; by restricting its meaning one is denying himself nearly all its real power.
+
+The real problem is not to determine frequencies, but to describe one's \emph{state of knowledge} by a probability distribution.
+If one does this correctly, he will find that whatever frequency connections are relevant will appear automatically, not as ``statistical assumptions'' but as mathematical consequences of probability theory.
+
+Examples are the theory of hydrodynamic turbulence, optical coherence, quantum field theory, and surprisingly, communication theory which after thirty years has hardly progressed beyond the stage of theorems which presuppose all the ten-gram frequencies known in advance.
+
+In early 1978 I attended a Seminar talk by one of the current experts on turbulence theory.
+Be noted that the basic theory is in a quandary because ``Nobody knows what statistical assumptions to make.''
+Yet the objectives of turbulence theory are such things as: given the density, compressibility, and viscosity of a fluid, predict the conditions for onset of turbulence, the pressure difference required to maintain turbulent flow, the rate of heat transfer in a turbulent fluid, the distortion and scattering of sound waves in a turbulent medium, the forces exerted on a body in the fluid, etc.
+Even if one's objective were only to predict some \emph{frequencies} $g_i$ related to turbulence, statements about the best estimate of $g_i$ and the reliability of that estimate, can only be derived from probabilities that are not themselves frequencies.
+
+We indicated a little of this above [Equations \eqref{B18}--\eqref{B23}]; now let us see in a more realistic case why the frequencies with which various things happen in a time-dependent process are not the same as their probabilities; but that, nevertheless, there are always definite connections between probability and frequency, derivable as consequences of probability theory.
+
+\subsection{Fluctuations}
+Consider some physical quantity $f(t)$.
+What follows will generalize at once to field quantities $f(x,t)$; but to make the present point it is sufficient to consider only time variations.
+Therefore, we may think of $f(t)$ as the net force exerted on an area $A$ by some pressure $P(x,t)$:
+\begin{equation}
+	\label{C1}
+	f(t) = \int\limits_{A} P(x, t) \dd A
+\end{equation}
+or the net force in the $x$-direction exerted by an electric field on a charge distributed with density $\rho(x)$:  $f(t) = \int E_x(x, t) \rho(x) \dd^3 x$; or as the total magnetic flux passing through an area $A$, or the number of molecules in an observed volume $V$; or the difference in magnetic and electrostatic energy stored in $V$:
+\begin{equation}
+	f(t) = \frac{1}{8\uppi} \int\limits_{V}[H^2(x, t) - E^2(x, t)] \dd^3 x
+\end{equation}
+and so on! For any such physical meaning, the following considerations will apply.
+
+Given any probability distribution (which we henceforth call, for brevity an ensemble) for $f(t)$, the best prediction of $f(t)$ that we can make from it---``best'' in the sense of minimizing the expected square of the error---is the ensemble average
+\begin{equation}
+	\label{C3}
+	\mean{f(t)} = \mean{f}
+\end{equation}
+which is independent of $t$ if it is an equilibrium ensemble, as we henceforth assume.
+But this may or may not be a reliable prediction of $f(t)$ at any particular time.
+The mean square expected deviation from the prediction \eqref{C3} is the variance
+\begin{equation}
+	\label{C4}
+	[\Delta f(t)]^2 = \mean{f^2} - \mean{f}^2
+\end{equation}
+again independent of $t$ by our assumption.
+Only if $\abs{\Delta f/\mean{f}} \ll 1$ is the ensemble making a sharp prediction of the measurable value of $f$.
+
+Basically, the quantity $\Delta f$ just defined represents only the \emph{uncertainty of the prediction}; i.e., the degree of ignorance about $f$ expressed by the ensemble.
+Yet $\Delta f$ is held, almost universally in the literature of fluctuation theory, to represent also the \emph{measurable} RMS fluctuations in $f$.
+Clearly, this is an additional assumption, which might or might not be true; for, obviously, the mere fact that I know $f$ only to $\pm1$\% accuracy, is not enough to make it fluctuate by $\pm 1$\%!
+Therefore, we note there is logically no room for any postulate that $\Delta f$ is the measurable RMS fluctuation; whether this is or is not true is mathematically determined by the probability distribution.
+To understand this we need a more careful analysis of the relation between $\mean{f}$, $\Delta f$, and experimentally measurable quantities.
+
+More generally, we can consider a large class of functionals of $f(t)$ in some time interval ($0 < t < T$); for example,
+\begin{equation}
+	\label{C5}
+	K[F(t)] = T^{-n} \int_{0}^{T} \dd t_1 \cdots \int_{0}^{T} \dd t_n G[f(t_1)\ldots f(t_n)]
+\end{equation}
+with $G(f_1\ldots f_n)$ a real function.
+For any such functional, the ensemble will determine some probability distribution $P(K)\dd k$, and the best prediction we can make by the mean-square-error criterion is its expectation $\mean{K}$.
+What is the necessary and sufficient condition that, as $T\to\infty$, the ensemble predicts a sharp value for $K$?
+It is, as always, that
+\begin{equation}
+	\label{C6}
+	(\Delta K)^2 \equiv \mean{K^2} - \mean{K}^2 \to 0
+\end{equation}
+For any such functional, this condition may be written out explicitly; let us give two examples that will surprise some readers.
+
+One of the sources of confusion in this field is that the word ``average'' is used in several different senses.
+We try to avoid this by using different notations for different kinds of average.
+For the single system that exists in the laboratory, the observable average is not the ensemble average $\mean{f}$, but a time average, which we denote by a bar (reserving the angular brackets to mean only ensemble averages):
+\begin{equation}
+	\label{C7}
+	\bar{f} = \frac{1}{T} \int_{0}^{T} f(t) \dd t
+\end{equation}
+which corresponds to \eqref{C5} with $G \equiv f(t_1)$.
+The averaging time $T$ is left arbitrary for the time being because the results \eqref{C8}, \eqref{C11}, \eqref{C18}, to be derived next, being exact for any $T$, then provide a great deal of insight that would be lost if we pass to the limit too soon.
+
+In the state of knowledge represented by the ensemble, the best prediction of $f$ by the mean square error criterion, is
+\begin{equation*}
+	\mean{\bar{f}} = \mean*{\frac{1}{T}\int_{0}^{T} f(t) \dd t} = \frac{1}{T} \int_{0}^{T} \mean{f}\dd t
+\end{equation*}
+or, for an equilibrium ensemble,
+\begin{equation}
+	\label{C8}
+	\mean{\bar{f}} = \mean{f}
+\end{equation}
+an example of a very general rule of probability theory; an ensemble average $\mean{f}$ is not the same as a measured value $f(t)$ or a measured average $\bar{f}$; but it is equal to the expectations of both of those quantities.
+
+But \eqref{C8}, like \eqref{C3}, tells us nothing about whether the prediction is a reliable one; to answer this we must again consider the variance
+\begin{equation}
+	\label{C9}
+	\begin{split}
+		(\Delta \bar{f})^2
+		&\equiv \mean*{(\bar{f} - \mean{\bar{f}})^2}\\
+		&= \frac{1}{T^2} \int_{0}^{T} \dd t_1 \int_{0}^{T} \dd t_2 [\mean{f(t_1) f(t_2)} - \mean{f(t_1)}\mean{f(t_2)}]
+	\end{split}
+\end{equation}
+Only if $\abs{\Delta \bar{f}/\mean{\bar{f}}} \ll 1$ is the ensemble making a sharp prediction of the measured average $\bar{f}$.
+Now, however, the time averaging can help us; for $\Delta \bar{f}$ may become very small compared to $\Delta f$, if we average over a long enough time.
+
+Now in an equilibrium ensemble the integrand of \eqref{C9} is a function of $(t_2-t_1)$ only, and defines the \emph{covariance function}
+\begin{equation}
+	\label{C10}
+	\begin{split}
+	\phi(\tau)
+		& \equiv \mean{f(t) f(t+\tau)} - \mean{f(t)}\mean{f(t+\tau)}
+		&= \mean{f(0) f(\tau)} - \mean{f}^2
+	\end{split}
+\end{equation}
+from which \eqref{C9} reduces to a single integral:
+\begin{equation}
+	\label{C11}
+	(\Delta \bar{f})^2
+		= \frac{2}{T^2} \int_{0}^{T} (T-\tau) \phi(\tau) \dd \tau
+\end{equation}
+A sufficient (stronger than necessary) condition for $\Delta f$ to tend to zero is that the integrals
+\begin{equation}
+	\label{C12}
+	\int_{0}^{\infty} \phi(\tau) \tau \dd \tau, \quad \int_{0}^{\infty} \phi(\tau)\dd \tau
+\end{equation}
+converge; and then the characteristic correlation time
+\begin{equation}
+	\label{C13}
+	T_c \equiv \left[\int_{0}^{\infty} \phi(\tau)\dd \tau\right]^{-1} \left[\int_{0}^{\infty} \tau \phi(\tau) \dd \tau\right]
+\end{equation}
+is finite, and we have asymptotically,
+\begin{equation}
+	\label{C14}
+	(\Delta \bar{f})^2 \sim \frac{2}{T} \int_{0}^{\infty} \phi(\tau) \dd \tau
+\end{equation}
+
+$\Delta \bar{f}$ then tends to zero like $1/\sqrt{T}$, and the situation is very much as if successive samples of the function over non-overlapping intervals of length $t$, were independent.
+However, the slightest positive correlation, if it persists indefinitely, will prevent any sharp prediction of $\bar{f}$.
+For, if $\phi(\tau) \to \phi(\infty) > 0$, then from \eqref{C11} we have
+\begin{equation}
+	\Delta \bar{f} \to \phi(\infty)
+\end{equation}
+and the ensemble can never make a sharp prediction of the measured average; i.e., any postulate that the ensemble average equals the time average, violates the mathematical rules of probability theory.
+These results correspond to \eqref{B23}.
+
+Now everything we have said about measurable values of $f$ can be repeated \emph{mutatis mutandis} for the measurable fluctuations $\delta f(t)$; we need only take a step up the hierarchy of successively higher order correlations.
+For, over the observation time $T$, the measured mean-square fluctuation in $f(t)$--i.e., deviation from the measured mean--is
+\begin{align}
+	(\delta f)^2 &\equiv \frac{1}{T} \int_{0}^{T} [f(t) - \bar{f}]^2 \dd t \\
+	&= \bar{f^2} - \bar{f}^2
+\end{align}
+which corresponds to the choice $G = f^2(t1) - f(t_1)f(t_2)$ in \eqref{C5}.
+The ``best'' prediction we can make of this from the ensemble, is its expectation, which reduces to
+\begin{equation}
+	\label{C18}
+	\mean{(\delta f)^2} = (\Delta f)^2 + (\Delta \bar{f})^2
+\end{equation}
+s a short calculation using \eqref{C4}, \eqref{C11} will verify.
+This is in itself a very interesting (and I am sure to many surprising) result.
+The predicted \emph{measurable} fluctuation $\delta f$ is not the same as the \emph{ensemble} fluctuation $\Delta f$ unless the ensemble is such, and the averaging time so long, that $\Delta \bar{f}$ is negligible compared to $\Delta f$.
+
+But \eqref{C18} tells us nothing about whether the prediction $\mean{(\delta f)^2}$ is a reliable one; to answer this we must, once more, examine the variance
+\begin{equation}
+	\label{C19}
+	V = \mean{(\ddel f)^4} - \mean{(\ddel f)^2}^2
+\end{equation}
+Unless \eqref{C19} is small compared to the square of \eqref{C18}, the ensemble is not making any definite prediction of $(\ddel f)$.
+After some computation we find that \eqref{C19} can be written in the form
+\begin{equation}
+	\label{C20}
+	V = \frac{1}{T^4} \int_{0}^{T} \dd t_1 \int_{0}^{T} \dd t_2 \int_{0}^{T} \dd t_3 \int_{0}^{T} \dd t_4 \psi(t_1, t_2, t_3, t_4)
+\end{equation}
+where $\psi$ is a four-point correlation function:
+\begin{equation}
+	\label{C21}
+	\begin{split}
+		\psi(t_1, t_2, t_3, t_4)
+			&=  \mean{f(t_1)f(t_2)f(t_3)f(t_4)} - 2\mean{f(t_1)f(t_2)f^2(t_3)} \\
+			& + \mean{f^2(t_1)f^2(t_2)} - [(\Ddel f)^2 + (\Ddel \bar{f})^2]
+	\end{split}
+\end{equation}
+which we have written in reduced form, taking advantage of the symmetry of the domain of integration in \eqref{C20}.
+
+As we see, the person who supposes that the RMS fluctuation $\Ddel f$ in the ensemble is also the experimentally measurable RMS fluctuation $\ddel f$, is inadvertently supposing some rather non-trivial mathematical properties of that ensemble, which would seem to require some nontrivial justification!
+Yet to the best of my knowledge, no existing treatment of fluctuation theory even recognizes the distinction between $\ddel f$ and $\Ddel f$.
+
+In almost all discussions of random functions in the existing literature concerned with physical applications, it is taken for granted that \eqref{C6} holds for all functionals.
+One can hardly avoid this if one postulates, with Rowlinson, that ``the probability of an event is the frequency with which it occurs in a given situation.''
+But if it requires the computation \eqref{C20} to justify this for the mean-square fluctuation, what would it take to justify it in general?
+That is just the ``ergodic'' problem for this model.
+
+Future progress in a number of areas will, I think, require that the relation between ensembles and physical systems be more carefully defined.
+The issue is not merely one of ``philosophy of interpretation'' that practical people may ignore; for not only the quantitative details, but even the qualitative kinds of physical predictions that a theory can make, depend on how these conceptual problems are resolved.
+For example, as was pointed out in my 1962 Brandeis Lectures, {\emph{loc.cit.} Eqs.~(83)--(93)], one cannot even state, in terms of the underlying ensemble, the criterion for a phase transition, or distinguish between laminar and turbulent flow, until the meaning of that ensemble is recognized.
+
+A striking example of the need for clarifications in fluctuation theory is provided by quantum electrodynamics.
+Here one may calculate the expectation of an electric field at a point: $\mean{E(x,t)} = 0$, but the expectation of its square diverges: $\mean{E^2(x, t)} = \infty$.
+Thus $\Ddel E = \infty$; in present quantum theory one interprets this as indicating that empty space is filled with ``vacuum fluctuations,'' yielding an infinite ``zero-point'' energy density.
+But when we see the distinction between $\Ddel E$ and $\ddel E$, a different interpretation suggests itself.
+If $\Ddel E = \infty$ that does not have to mean that any \emph{physical} quantity is infinite; it means only that the present theory is totally unable to predict the field at a point, i.e., the only thing which is infinite is the uncertainty of the prediction.
+
+It had been thought for 30 years that these vacuum fluctuations had to be real, because they were the physical cause of the Lamb shift; however it has been shown (Jaynes, \cite{jaynes78}{1978}) that a classical calculation leads to just the same formula for this frequency shift without invoking any field fluctuations.
+Therefore, it appears that a reinterpretation of the ``fluctuation laws'' of quantum theory along these lines might clear up at least some of the paradoxes of present quantum theory.
+
+The situation just noted is only one of a wide class of connections that might be called ``generalized fluctuation-dissipation theorems,'' or ``fluctu\-ation-response theorems.''
+These include all of the Kubo-type theorems relating transport coefficients to various ``thermal fluctuations.''
+I believe that relations of this type will become more general and more useful with a better understanding of fluctuation theory.
+
+\subsection{Biology}
+Perhaps the largest and most obvious beckoning new field for application of statistical thermodynamics is biology.
+At present, we do not have the input information needed for a useful theory, we do not know what simplifying assumptions are appropriate; and indeed we do not know what questions to ask.
+Nevertheless, molecular biology has advanced to the point where some preliminary useful results do not seem any further beyond us now than the achievement of an integrated circuit computer chip did thirty years ago.
+
+In the case of the simplest organism for which a great deal of biochemical information exists, the bacterium \emph{E. coli}, Watson (\cite{watson}{1965}) estimated that ``one-fifth to one-third of the chemical reactions in \emph{E. coli} are known,'' and noted that additions to the list were coming at such a rate that by perhaps 1985 it might be possible to describe ``essentially all the metabolic reactions involved in the life of an E. coli cell.''
+
+As a pure speculation, then, let us try to anticipate a problem that might just possibly be amenable to the biochemical knowledge and computer technology of the year 2000: Given the structure and chemical composition of \emph{E. coli}, predict its experimentally reproducible properties, i.e., the range of environmental conditions (temperature, pH, concentrations of food and other chemicals) under which a cell can stay alive; the rate of growth as a function of these factors.
+Given a specific mutation (change in the DNA code), predict whether it can survive and what the reproducible properties of the new form will be.
+
+Such a program would be a useful first step.
+It seems, in my very cloudy crystal ball, that (1) its realization might be a matter of decades rather than centuries, (2) success in one instance would bring about a rapid increase in our ability to deal with more complicated problems, because it would reveal what simplifying assumptions are permissible.
+
+At present one could think of several thousand factors that might, as far as we know, be highly relevant for these predictions.
+If a single cell contains 20\,000 ribosomes where protein synthesis is taking place, are they performing 20\,000 different functions, each one essential to the life of the cell? This just seems unlikely.
+I would conjecture that of all the complicated detail that can be seen in a cell, the overwhelmingly greatest part is---like every detail of the hair on our heads, or our fingerprints---accidental to the history of that particular individual; and not at all essential for its biological function.
+
+The problem seems terribly complicated at present, because in all this detail we do not know what is relevant, what is irrelevant.
+But success in one instance would show us how to judge this.
+It might turn out that prediction of biological activity requires information about only a dozen separate factors, instead of a million.
+If so, then one would have both the courage and the insight needed to attack more complicated problems.
+
+This has been stated so as to bring out the close analogy with what has happened in the theory of irreversible processes.
+In the early 1950's the development of a general formalism for irreversible processes appeared to be a hopelessly complicated program, not to be thought of in the next thousand years, if ever.
+Thus, van Hove (1956) stated: ``... in view of the unlimited diversity of possible nonequilibrium situations, the existence of such a set of equations seems rather doubtful.''
+Yet, as noted in Section~\ref{sec:A} above, the principle which has solved this problem already existed, unrecognized, at that time.
+And today it seems that our major problem is not the complications of detail, but the conceptual difficulty in understanding how such a complicated problem could have such a (formally) simple solution.
+The answer is that, while full dynamical information is extremely complicated, the \emph{relevant} information is not.
+
+Perhaps there is a general principle---which we are conceptually unprepared to recognize today because it is too simple---that would tell us which features of an organism are its essential, relevant biological features; and which are not.
+Of course, applications of statistical mechanics to biology may be imagined at many different levels, so widely separated that they have nothing to do with each other.
+Thus, while I have been speculating about complexities within a single cell, the contribution of E. H. Kerner to this Symposium goes after the opposite extreme, interaction of many organisms.
+At that level the relevant information is now so much simpler and more easily obtained that many interesting results are already available.
+
+\subsection{Basic Statistical Theory}
+From the standpoint of statistical theory in general, the principle of maximum entropy is only one detail, which arose in connection with the problem of generalizing Laplace's statistical practice from \eqref{A6}, and we have examined it above only in the finite discrete case.
+As $n \to \infty$ a new feature is that for some kinds of testable information there is no upper bound to the entropy.
+For mean-value constraints, the partition function may diverge for all real $\lambda$, or the constraint equations \eqref{B4} may not have a solution.
+In this way, the theory signals back to us that we have not put enough information into the problem to determine any definite inferences.
+In the finite case, the mere enumeration of the possibilities $\{i = 1,2,...n\}$ specifies enough to ensure that a solution exists.
+If $n \to \infty$, we have specified far less in the enumeration, and it is hardly surprising that this must be compensated by specifying more information in our constraints.
+
+Rowlinson quotes Leslie Ellis (1842) to the effect that ``Mere ignorance is no ground for any inference whatever. \emph{Ex nihilo nihil.}''
+I am bewildered as to how Rowlinson can construe this as an argument against maximum entropy, since as we see the maximum entropy principle immediately tells us the same thing.
+Indeed, it is the principle of maximum entropy---and not Leslie Ellis---that tells us precisely \emph{how much} information must be specified before we have a normalizable distribution so that rational inferences are possible.
+Once this is recognized, I believe that the case $n \to \infty$ presents no difficulties of mathematics or of principle.
+
+It is very different when we generalize to continuous distributions.
+We noted that Boltzmann was obliged to divide his phase space into discrete cells in order to get the entropy expression \eqref{A14} from the combinatorial factor \eqref{A11}.
+Likewise, Shannon's uniqueness proof establishing $-\sum p_i \log p_i$ as a consistent information measure, goes through only for a discrete distribution.
+We therefore approach the continuous case as the limit of a discrete one.
+This leads (Jaynes, \cite{jaynes63b}{1963b}, \cite{jaynes68}{1968}) to the continuous entropy expression
+\begin{equation}
+	\label{C22}
+	S = - \int p(x) \log \frac{p(x)}{m(x)} \dd x
+\end{equation}
+where the ``measure function'' $m(x)$ is proportional to the limiting density of discrete points (all this theory is readily restated in the notation of measure theory and Stieltjes integrals; but we have never yet found a problem that needs it).
+So, it is the entropy relative to some ``measure'' $m(x)$ that is to be maximized.
+Under a change of variables, the functions $p(x)$, $m(x)$ transform in the same way, so that the entropy so defined is invariant; and in consequence it turns out that the Lagrange multipliers and all our conclusions from entropy maximization are independent of our choice of variables.
+The maximum-entropy probability density for prescribed averages
+\begin{equation}
+	\int f_k(x) p(x) \dd x = F_k, \qquad 1 \leq k \leq m
+\end{equation}
+is
+\begin{equation}
+	\label{C24}
+	p(x) = \frac{m(x)}{Z(\lambda_1 \ldots \lambda_m)} \exp \left(-\sum_{k} \lambda_k f_k(x)\right)
+\end{equation}
+with the partition function
+\begin{equation}
+	Z(\lambda_1 \ldots \lambda_m) = \int\! \dd x\, m(x) \exp \left(-\sum_{k} \lambda_k f_k(x)\right)
+\end{equation}
+An interesting fact, which may have some deep significance not yet seen, is that the class of maximum-entropy functions \eqref{C24} is, by the Pitman-Koopman theorem, identical with the class of functions admitting sufficient statistics; that is, if as in \eqref{B72}--\eqref{B81} we think of \eqref{C24} as defining a class of sampling distributions from which, given data $D = $ ``$N$ measurements of $x$ yielded the results $\{x_1...x_N\}$,'' we are to estimate the $\{\lambda_1 \ldots \lambda_m\}$ by applying Bayes’ theorem, we find that the posterior distribution of the $\lambda$'s depends on the data only through the observed averages:
+\begin{equation}
+	\bar{f}_k = \frac{1}{N} \sum_{r=1}^{N} f_k (x_r)
+\end{equation}
+all other aspects of the data being irrelevant.
+This seems to strengthen the point of view noted before in \eqref{B72}--\eqref{B81}.
+For many more details, see Huzurbazar (\cite{huzurbazar}{1976}).
+
+But now let us return to our usual viewpoint, that \eqref{C24} is not a sampling distribution but a prior distribution from which we are to make inferences about $x$, which incorporates any testable prior information.
+If the space $S$, in which the continuous variable $x$ is defined, is not the result of any obvious limiting process, there seems to be an ambiguity; for what now determines $m(x)$?
+This problem was discussed in some detail before (Jaynes, \cite{jaynes68}{1968}).
+
+If there are no constraints, maximization of \eqref{C22} leads to $p(x) = A m(x)$ where $A$ is a normalization constant; thus $m(x)$ has the intuitive meaning that it is the distribution representing ``complete ignorance'' and we are back, essentially, to Bernoulli's problem from where it all started.
+In the continuous case, then, before we can even apply maximum entropy we must deal with the problem of complete ignorance.
+
+Suppose a man is lost in a rowboat in the middle of the ocean.
+What does he mean by saying that he is ``completely ignorant'' of his position?
+He means that, if he were to row a mile in any direction he would still be lost; he would be just as ignorant as before.
+In other words, ignorance of one's location is a state of knowledge which is not changed by a small change in that location.
+Mathematically, ``complete ignorance'' is an invariance property.
+
+The set of all possible changes of location forms a group of translations.
+More generally, in a space $S_x$ of any structure, one can define precisely what he means by ``complete ignorance'' by specifying some group of transformations of $S_x$ onto itself under which an element of probability $m(x)\dd x$ is to be invariant.
+If the group is transitive on $S_x$ (i.e., from any point $x$, any other point $x'$ can be reached by some element of the group), this determines $m(x)$, to within an irrelevant multiplicative constant, on $S_x$.
+
+This criterion follows naturally from the basic desideratum of consistency: \emph{In two problems where we have the same state of knowledge, we should assign the same probabilities.}
+Any transformation of the group defines a new problem in which a ``completely ignorant'' person would have the same state of prior knowledge.
+If we can recognize a group of transformations that clearly has this property of transforming the problem into one that is equivalent in this sense, then the ambiguity in $m(x)$ has been removed.
+Quite a few useful ``ignorance priors'' have been found in this way; and in fact for most real problems that arise the solutions are now well---if not widely---known.
+
+But while the notion of transformation groups greatly reduces the ambiguity in $m(x)$, it does not entirely remove it in all cases.
+In some problems no appropriate group may be apparent; or there may be more than one, and we do not see how to choose between them.
+Therefore, still more basic principles are needed; and active research is now underway and is yielding promising results.
+
+One of these new approaches, and the one on which there is most to report, is the method of marginalization (Jaynes, \cite{jaynes79}{1979}).
+The basic facts pointing to it were given already by Jeffreys (\cite{jeffreys}{1939}; $\S$3.8), but it was not realized until 1976 that this provides a new, constructive method for defining what is meant by ``ignorance,'' with the advantage that everything follows from the basic rules \eqref{A8}, \eqref{A9} of probability theory, with no need for any such desiderata as entropy or group invariance.
+We indicate the basic idea briefly, using a bare skeleton notation to convey only the structure of the argument.
+
+\subsection{Marginalization}
+We have a sampling distribution $p(x\given \theta)$ for some observable quantity $x$, depending on a parameter $\theta$, both multidimensional.
+From an observed value $x$ we can make inferences about $\theta$; with prior information $I_1$, prior probability distribution $p(\theta \given I_1)$ Bayes’ theorem \eqref{B24} yields the posterior distribution
+\begin{equation}
+	\label{C27}
+	p(\theta \given x I_1) = A p(\theta \given I_1) p(x \given \theta)
+\end{equation}
+In the following, $A$ always stands for a normalization constant, not necessarily the same in all equations.
+
+But now we learn that the parameter $\theta$ can be separated into two components: $\theta = (\zeta, \eta)$ and we are to make inferences only about $\zeta$.
+Then we discover that the data x may also be separated: $x= (y, z)$ in such a way that the sampling distribution of $z$ depends only on $\zeta$:
+\begin{equation}
+	\label{C28}
+	p(z \given \zeta \eta) = \int p(y z \given \zeta \eta) \dd y = p(z \given \zeta)
+\end{equation}
+Then, writing the prior distribution as $p(\theta \given x I_1) = \uppi(\zeta) \uppi(\eta)$, \eqref{C27} gives for the desired marginal posterior distribution
+\begin{equation}
+	\label{C29}
+	p(\zeta \given y, z I_1) = A \uppi(\zeta) \int p(y z \given \zeta \eta) \uppi(\eta) \dd \eta
+\end{equation}
+which must in general depend on our prior information about $n$.
+This is the solution given by a ``conscientious Bayesian'' $B_1$.
+
+At this point there arrives on the scene an ``ignorant Bayesian'' $B_2$, whose knowledge of the experiment consists only of the sampling distribution \eqref{C28}; i.e., he is unaware of the existence of the components $(y, \eta)$.
+When told to make inferences about $\zeta$, he confidently applies Bayes' theorem to \eqref{C28}, getting the result
+\begin{equation}
+	\label{C30}
+	p(\zeta \given z I_2) = A \uppi(\zeta) p(z \given \zeta)
+\end{equation}
+This is what was called a ``pseudoposterior distribution'' by Geisser and Cornfield (1963).
+
+$B_1$ and $B_2$ will in general come to different conclusions because $B_1$ is taking into account extra information about $(y, \eta)$.
+But now suppose that for some particular prior $\uppi(n)$, $B_1$ and $B_2$ happen to agree after all; what does that mean?
+Clearly, $B_2$ is not incorporating any information about $\eta$; he doesn't even know it exists.
+If, nevertheless, they come to the same conclusions, then it must be that $B_1$ was not incorporating any information about $n$ either.
+In other words, a prior $\uppi(\eta)$ that leaves $B_1$ and $B_2$ in agreement must be, within the context of this model, a \emph{completely uninformative} prior; it contains no information \emph{relevant} to questions about $\zeta$.
+
+Now the condition for equality of \eqref{C29}, \eqref{C30} is just a Fredholm integral equation:
+\begin{equation}
+	\label{C31}
+	\int p(y, z \given \zeta, \eta) \uppi(\eta) \dd \eta = \lambda(y, z) p(z \given \zeta)
+\end{equation}
+where $\lambda(y, z)$ is a function to be determined from \eqref{C31}.
+Therefore, the rules of probability theory already contain the criterion for defining what is meant by ``completely uninformative.''
+
+Mathematical analysis of \eqref{C31} proves to be quite involved; and we do not yet know a necessary and sufficient condition on $p(y, z \given \zeta \eta)$ for it to have solutions, or unique solutions, although a number of isolated results are now in (Jaynes, \cite{jaynes79}{1979}).
+We indicate one of them.
+
+Suppose $y$ and $\eta$ are positive real, and $\eta$ is a scale parameter for $y$; i.e., we have the functional form
+\begin{equation}
+	p(y, z \given \zeta, \eta) = \eta^{-1} f(z, \zeta; y/\eta)
+\end{equation}
+for the sampling density function. Then, \eqref{C31} reduces to
+\begin{equation}
+	\label{C33}
+	y^{-1} \int f(z, \zeta; \alpha) \left[\frac{y}{\alpha} \right] \dd \alpha = \lambda(y, z) \int f(z, \zeta; \alpha) \dd \alpha
+\end{equation}
+where we have used \eqref{C28}.
+It is apparent from this that the Jeffreys prior
+\begin{equation}
+	\label{C34}
+	\uppi(n) = \eta^{-1}
+\end{equation}
+is always a solution, leading to $\lambda(y, z) = y^{-1}$.
+Thus \eqref{C34} is ``completely uninformative'' for all models in which $\eta$ appears as a scale parameter; and it is easily shown (Jaynes, \cite{jaynes79}{1979}) that one can invent specific models for which it is unique.
+
+We have therefore, the result that the Jeffreys prior is uniquely determined as the only prior for a scale parameter that is ``completely uninformative'' without qualifications.
+We can hardly avoid the inference that it represents, uniquely, the condition of ``complete ignorance'' for a scale parameter.
+
+This example shows how marginalization is able to give results consistent with those found before, but in a way that springs directly out of the principles of probability theory without any additional appeal to intuition (as is involved in choosing a transformation group).
+At the moment, this approach seems very promising as a means of rigorizing and extending the basic theory. However, there are enough complicated technical details not noted here, so that it will require quite a bit more research before we can assess its full scope and power.
+In fact, the chase is at present quite exciting, because it is still mathematically an open question whether the integral equations may in some cases become overdetermined, so that no uninformative prior exists.
+If so, this would call for some deep clarification, and perhaps revision, of present basic statistical theory.

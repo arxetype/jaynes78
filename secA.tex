@@ -1,0 +1,604 @@
+\section{Historical Background}
+\label{sec:A}
+The ideas to be discussed at this Symposium are found clearly expressed already in ancient sources, particularly the Old Testament, Herodotus, and Ovennus.
+All note the virtue of making wise decisions by taking into account all possibilities, i.e., by not presuming more information than we possess.
+But probability theory, in the form which goes beyond these moral exhortations and considers actual numerical values of probabilities and expectations, begins with the \emph{Ludo aleae} of Gerolamo Cardano, some time in the mid-sixteenth century.
+Wilks (\cite{wilks}{1961}) places this ``around 1520,'' although Cardano’s Section ``On Luck in Play'' contains internal evidence that shows the date of its writing to be 1564, still 90 years before the Pascal-Fermat correspondence.
+
+Already in these earliest works, special cases of the Principle of Maximum Entropy are recognized intuitively and, of necessity, used.
+For there is no application of probability theory in which one can evade that all-important first step: assigning some initial numerical values of probabilities so that the alculation can get started.
+Even in the most elementary homework problems, such as ``Find the probability of getting at least two heads in four tosses of a coin,'' we have no basis for the calculation until we make some initial judgment, usually that ``heads'' shall have the probability $1/2$ independently at each toss.
+But by what reasoning does one arrive at this initial assignment?
+If it is questioned, how shall we defend it?
+
+\subsection{The First Line: Bernoulli to Cox}
+The basis underlying such initial assignments was stated as an explicit formal principle in the \emph{Ars Conjectandi} of James (= Jacob) Bernoulli (1713).
+Unfortunately, it was given the curious name: \emph{Principle of Insufficient Reason} which has had, ever since, a psychologically repellant quality that prevents many from seeing the positive merit of the idea itself.
+Keynes (\cite{keynes}{1921}) helped somewhat by renaming it the \emph{Principle of Indifference}; but by then the damage had been done.
+Had Bernoulli called his principle, more appropriately, the \emph{Desideratum of Consistency}, nobody would have ventured to deprecate it, and today statistical theory would be in considerably better shape than it is.
+
+The essence of the principle is just:
+(1) we recognize that a probability assignment is a means of describing a certain \emph{state of knowledge}.
+(2) if the available evidence gives us no reason to consider proposition $A_1$, either more or less likely than $A_2$, then the only honest way we can describe that state of knowledge is to assign them equal probabilities: $p_1 = p_2$.
+Any other procedure would be inconsistent in the sense that, by a mere interchange of the labels $(1, 2)$ we could then generate a new problem in which our state of knowledge is the same but in which we are assigning different probabilities.
+(3) Extending this reasoning, one arrives at the rule
+\begin{equation}
+	\label{A1}
+	p(A) = \frac{M}{N} = \frac{(\text{Number of cases favorable to }A)}{(\text{Total number of equally possible cases})}
+\end{equation}
+which served as the basic definition of probability for the next 150 years.
+
+The only valid criticism of this principle, it seems to me,	is that in the original form (enumeration of the ``equally possible'' cases) it cannot be applied to all problems.
+Indeed, nobody could have emphasized this more strongly than Bernoulli himself.
+After noting its use where applicable, he adds, ``But here, finally, we seem to have met our problem, since this may be done only in a very few cases and almost nowhere other than in games of chance the inventors of which, in order to provide equal chances for the players, took pains to set up so that the numbers of cases would be known and --- so that all these cases could happen with equal ease.''
+After citing some examples, Bernoulli continues in the next paragraph, ``But what mortal will ever determine, for example, the number of diseases --- these and other such things depend upon causes completely hidden from us ---.''
+
+It was for the explicitly stated purpose of finding probabilities when the number of ``equally possible'' cases is infinite or beyond our powers to determine, that Bernoulli turns next to his celebrated theorem, today called the weak law of large numbers.
+His idea was that, if a probability $p$ cannot be calculated in the manner $p=M/N$ by direct application of the Principle of Insufficient Reason, then in some cases we may still reason backwards and estimate the ratio $M/N$ approximately by observing frequencies in many trials.
+
+That there ought to be some kind of connection between a theoretical \emph{probability} and an observable \emph{frequency} was a vaguely seen intuition in the earlier works; but Bernoulli, seeing clearly the distinction between the concepts, recognized that the existence of a connection between them cannot be merely postulated; it requires mathematical demonstration.
+If in a binary experiment we assign a constant probability of success $p$, independently at each trial, then we find for the probability of seeing $m$ successes in $n$ trials the binomial distribution.
+\begin{equation}
+	\label{A2}
+	P(m\given n, p) = \binom{n}{m} \, p^m (1-p)^{n-m}
+\end{equation}
+Bernoulli then shows that as $n\to\infty$, the observed frequency $f=m/n$ of successes tends to the probability $p$ in the sense that for all $\epsilon > 0$,
+\begin{equation}
+	\label{A3}
+	P(p-e<f<p+e \given p,n) \to 1
+\end{equation}
+and thus (in a sense made precise only in the later work of Bayes and Laplace) for sufficiently large $n$, the observed frequency is practically certain to be close to the number $p$ sought.
+
+But Bernoulli's result does not tell us how large $n$ must be for a given accuracy.
+For this, one needs the more detailed limit theorem; as $n$ increases, $f$ may be considered a continuous variable, and the probability that $(f<m/n<f+\dd f)$ goes into a gaussian, or normal, distribution:
+\begin{equation}
+	\label{A4}
+	P(\dd f\given n, p) \sim \left(\frac{n}{2\uppi p(1-p)}\right)^{1/2} \exp\left(-\frac{n(f-p)^2}{2p(1-p)}\right)\dd f
+\end{equation}
+in the sense of the leading term of an asymptotic expansion.
+For example, if $p=2/3$, then from \eqref{A4}, in $n=1000$ trials, there is a 99\% probability that the observed $f$ will lie in the interval $0.667 \pm 0.038$, and an even chance that it will fall in $0.667\pm0.010$.
+The result \eqref{A4} was first given in this generality by Laplace; it had been found earlier by de Moivre for the case $p=\frac{1}{2}$.
+And in turn, the de Moivre-Laplace theorem \eqref{A4} became the ancestor of our present Central Limit Theorem.
+
+Since these limit theorems are sometimes held to be the most important and sophisticated fruits of probability theory, we note that they depend crucially on the assumption of independence of different trials.
+The slightest positive correlation between trials $i$ and $j$, if it persists for arbitrarily large $\abs{i-j}$, will render these theorems qualitatively incorrect.
+
+Laplace's contributions to probability theory go rather far beyond mere analytical refinements of other peoples’ results.
+Most important for statistical theory today, he saw the general principle needed to solve problems of the type formulated by Bernoulli, but left unfinished by the Bernoulli and de Moivre-Laplace limit theorems.
+These results concern only the so-called ``sampling distribution.'' That is, given $p=M/N$, what is the probability that we shall see particular sample numbers $(m,n)$?
+The results \eqref{A1}--\eqref{A2} describe a state of knowledge in which the ``population numbers'' $(M,N)$ are known, the sample number unknown.
+But in the problem Bernoulli tried to solve, the sample is known and the population is not only unknown--its very existence is only a tentative hypothesis (what mortal will ever determine the number of diseases, etc.).
+
+We have, therefore, an inversion problem.
+The above theorems show that, given $(M, N)$ \emph{and the correctness of the whole conceptual model}, then it is likely that in many trials the observed frequency $f$ will be close to the probability $p$.
+Presumably, then, given the observed $f$ in many trials, it is likely that $p$ is close to $f$. But can this be made into a precise theorem like \eqref{A4}?
+The binomial law \eqref{A2} gives the probability of $m$, given $(M,N,n)$.
+Can we turn this around and find a formula for the probability of $M$, given $(m,N,n)$?
+This is the problem of \emph{inverse probabilities}.
+
+A particular inversion of the binomial distribution was offered by a British clergyman and amateur mathematician, Thomas Bayes (\cite{bayes}{1763}) in what has become perhaps the most famous and controversial work in probability theory.
+His reasoning was obscure and hard to describe; but his actual result is easy to state.
+Given the data $(m,n)$, he finds for the probability that $M/N$ lies in the interval $p < (M/N) < p + \dd p$,
+\begin{equation}
+	\label{A5}
+	P(\dd p\given m, n) = \frac{(n+1)!}{m!(n-m)!} p^m (1-p)^{n-m} \dd p
+\end{equation}
+today called a Beta distribution.
+It is not a binomial distribution because the variable is $p$ rather than $m$ and the numerical coefficient is different, but it is a trivial mathematical exercise [expand the logarithm of \eqref{A5} in a power series about its peak] to show that, for large $n$, \eqref{A5} goes asymptotically into just \eqref{A4} with $f$ and $p$ everywhere interchanged.
+Thus, if in $n=1000$ trials we observe $m = 667$ successes, then on this evidence there would be a 99\% probability that $p$ lies in $(0.667 \pm 0.038)$, etc.
+
+In the gaussian approximation, according to Bayes’ solution, there is complete mathematical symmetry between the probability of $f$ given $p$, and of $p$ given $f$.
+This would certainly seem to be the neatest and simplest imaginable solution to Bernoulli's inversion problem.
+
+Laplace, in his famous memoir of 1774 on the ``probabilities of causes,'' perceived the principle underlying inverse probabilities in far greater generality. Let $E$ stand for some observable event and $\{C_1, \ldots C_N\}$ the set of its conceivable causes.
+Suppose that we have found, according to some conceptual model, the ``sampling distribution'' or ``direct'' probabilities of $E$ for each cause: $P(E\given C_i),\ i=1,2,\ldots,N$.
+Then, says Laplace, if initially the causes $C_i$ are considered equally likely, then having seen the event $E$, the different causes are indicated with probability proportional to $P(E \given C_i)$.
+That is, with uniform prior probabilities, the posterior probabilities of the $C_i$, are
+\begin{equation}
+	\label{A6}
+	P(C_i\given E) = \left(\sum_{j=1}^{N} P(E\given C_j)\right)^{-1} P(E\given C_i)
+\end{equation}
+This is a tremendous generalization of the Bernoulli-Bayes results \eqref{A2}, \eqref{A5}.
+If the event $E$ consists in finding m successes in $n$ trials, and the causes $C_i$ correspond to the possible values of $M$ in the Bernoulli model, then $P(E\given C_i)$ is the binomial distribution \eqref{A2}; and in the limit $N\to\infty$ \eqref{A6} goes into Bayes' result \eqref{A5}.
+
+Later, Laplace generalized \eqref{A6} further by noting that, if initially the $C_i$ are not considered equally likely, but have prior probabilities $P(C_i\given I)$, where $I$ stands for the prior information, then the terms in \eqref{A6} should be weighted according to $P(C_i\given I)$:
+\begin{equation}
+	\label{A7}
+	P(C_i\given E, I) = \frac{P(E\given C_i)\, P(C_i\given I)}{\sum_{j} P(E\given C_j)\, P(C_j\given I)}
+\end{equation}
+but, following long-established custom, it is Laplace's result \eqref{A7} that is always called, in the modern literature, ``Bayes' theorem.''
+
+Laplace proceeded to apply \eqref{A6} to a variety of problems that arise in astronomy, meteorology, geodesy, population statistics, etc.
+He would use it typically as follows.
+Comparing experimental observations with some existing theory, or calculation, one will never find perfect agreement.
+Are the discrepancies so small that they might reasonably be attributed to measurement errors, or are they so large that they indicate, with high probability, the existence of some ew systematic cause?
+If so, Laplace would undertake to find that cause.
+Such uses of inverse probability--what would be called today ``significance tests'' by statisticians, and ``detection of signals in noise'' by electrical engineers--led him to some of the most important discoveries in celestial mechanics.
+
+Yet there were difficulties that prevented others from following Laplace's path, in spite of its demonstrated usefulness.
+In the first place, Laplace simply stated the results \eqref{A6}, \eqref{A7} as intuitive, \emph{ad hoc} recipes without any derivation from compelling desiderata; and this left room for much agonizing over their logical justification and uniqueness.
+For an account of this, see Keynes (\cite{keynes}{1921}).
+However, we now know that Laplace's result \eqref{A7} is, in fact, the entirely correct and unique solution to the inversion problem.
+
+More importantly, it became apparent that, in spite of first appearances, the results of Bayes and Laplace did not, after all, solve the problem that Bernoulli had set out to deal with.
+Recall, Bernoulli's original motivation was that the Principle of Insufficient Reason is inapplicable in so many real problems, because we are unable to break things down into an enumeration of ``equally possible'' cases.
+His hope--left unrealized at his death in 1705--had been that, by inversion of his theorem one could avoid having to use Insufficient Reason.
+Yet when the inversion problem was finally solved by Bayes and Laplace, the prior probabilities $P(C_i \given I)$ that Bernoulli had sought to avoid, intruded themselves inevitably right back into the picture!
+
+The only useful results Laplace got came from \eqref{A6}, based on the uniform prior probabilities $P(C_i\given I) = 1/N$ from the Principle of Insufficient Reason.
+That is, of course, not because Laplace failed to understand the generalization \eqref{A7} as some have charged--it was Laplace who, in his \emph{Essai Philosophique}, pointed out the need for that generalization.
+Rather, Laplace did not have any principle for finding prior probabilities in cases where the prior information fails to render the possibilities ``equally likely.''
+
+At this point, the history of statistical theory takes a sharp 90° turn away from the original goal, and we are only slowly straightening out again today.
+One might have thought, particularly in view of the great pragmatic success achieved by Laplace with \eqref{A6}, that the next workers would try to build constructively on the foundations laid down by him.
+The next order of business should have been seeking new and more general principles for determining prior probabilities, thus extending the range of problems where probability theory is useful to \eqref{A7}.
+Instead, only fifteen years after Laplace's death, there started a series of increasingly violent attacks on his work.
+Totally ignoring the successful results they had yielded, Laplace's methods based on \eqref{A6} were rejected and ridiculed, along with the whole conception of probability theory expounded by Bernoulli and Laplace.
+The main early references to this counter-stream of thought are Ellis (\cite{ellis}{1842}), Boole (\cite{boole}{1854}), Venn(\cite{venn}{1866}), and von Mises (\cite{mises}{1928}).
+
+As already emphasized, Bernoulli's definition of probability \eqref{A1} was developed for the purpose of representing mathematically a particular state of knowledge; and the equations of probability theory then represent the process of plausible, or inductive, reasoning in cases where there is not enough information at hand to permit deductive reasoning.
+In particular, Laplace's result \eqref{A7} represents the process of ``learning by experience,'' the prior probability $P(C\given I)$ changing to the posterior probability $P(C\given E,I)$ as a result of obtaining new evidence $E$.
+
+This counter-stream of thought, however, rejected the notion of probability as describing a state of knowledge, and insisted that by ``probability'' one must mean only ``frequency in a random experiment.'' For a time this viewpoint dominated the field so completely that those who were students in the period 1930-1960 were hardly aware that any other conception had ever existed.
+
+If anyone wishes to study the properties of frequencies in random experiments he is, of course, perfectly free to do so; and we wish him every success.
+But if he wants to talk about frequencies, why can't he just use the word ``frequency?''
+Why does he insist on appropriating the word ``probability,'' which had already a long-established and very different technical meaning?
+
+Most of the debate that has been in progress for over a century on ``frequency vs. non-frequency definitions of probability'' seems to me not concerned with any substantive issue at all; but merely arguing over who has the right to use a word.
+Now the historical priority belongs clearly to Bernoulli and Laplace.
+Therefore, in the interests not only of responsible scholarship, but also of clear exposition and to avoid becoming entangled in semantic irrelevancies, we ought to use the word ``probability'' in the original sense of Bernoulli and Laplace; and if we mean something else, call it something else.
+
+With the usage just recommended, the term ``frequency theory of probability'' is a pure incongruity; just as much so as ``theory of square circles.''
+One might speak properly of a ``frequency theory of inference,'' or the better term ``sampling theory,'' now in general use among statisticians (because the only distributions admitted are the ones we have called sampling distributions).
+This stands in contrast to the ``Bayesian theory'' developed by Laplace, which admits the notion of probability of an hypothesis.
+
+Having two opposed schools of thought about how to handle problems of inference, the stage is set for an interesting contest.
+The sampling theorists, forbidden by their ideology to use Bayes' theorem as Laplace did in the form \eqref{A6}, must seek other methods for dealing with Laplace's problems.
+What methods, then, did they invent?
+How do their procedures and results compare with Laplace's?
+The sampling theory developed slowly over the first half of this Century by the labors of many, prominent names being Fisher, ``Student,'' Pearson, Neyman, Kendall, Cramér, Wald.
+They proceeded through a variety of \emph{ad hoc} intuitive principles, each appearing reasonable at first glance, but for which defects or limitations on generality always appeared.
+For example, the Chi~squared test, maximum likelihood, unbiased and/or efficient estimators, confidence intervals, fiducial distributions, conditioning on ancillary statistics, power functions and sequential methods for hypothesis testing.
+Certain technical difficulties ("nuisance" parameters, non-existence of sufficient or ancillary statistics, inability to take prior information into account) remained behind as isolated pockets of resistance which sampling theory has never been able to overcome.
+Nevertheless, there was discernible progress over the years, accompanied by an unending stream of attacks on Laplace's ideas and methods, sometimes degenerating into personal attacks on Laplace himself [see, for example, the biographical sketch by E.~T.~Bell (\cite{bell}{1937}), entitled ``From Peasant to Snob'').
+
+
+\subsection*{Enter Jeffreys}
+After 1939, the sampling theorists had another target for their scorn.
+Sir Harold Jeffreys, finding in geophysics some problems of ``extracting signals from noise'' very much like those treated by Laplace, found himself unconvinced by Fisher's arguments, and produced a book in which the methods of Laplace were reinstated and applied, in the precise, compact modern notation that did not exist in the time of Laplace, to amass of current scientific problems.
+The result was a vastly more comprehensive treatment of inference than Laplace's, but with two points in common: (A) the applications worked out beautifully, encountering no such technical difficulties as the ``nuisance parameters'' noted above; and yielding the same or demonstrably better results than those found by sampling theory methods.
+For many specific examples, see Jaynes (\cite{jaynes76}{1976}). (B) Unfortunately, like Laplace, Jeffreys did not derive his principles as necessary consequences of any compelling desiderata; and thus left room to continue the same old arguments over their justification.
+
+The sampling theorists, seizing eagerly upon point (B) while again totalling ignoring point (A), proceeded to give Jeffreys the same treatment as Laplace, which he had to endure for some thirty years before the tide began to turn. As a student in the mid-1940's, I discovered the book of Jeffreys (\cite{jeffreys}{1939}) and was enormously impressed by the smooth, effortless way he was able to derive the useful results of the theory, as well as the sensible philosophy he expressed.
+But I too felt that something was missing in the exposition of fundamentals in the first Chapter and, learning about the attacks on Jeffreys’ methods by virtually every other writer on statistics, felt some mental reservations.
+
+But just at the right moment there appeared a work that removed all doubts and set the direction of my own life's work.
+An unpretentious little article by Professor R. T. Cox (\cite{cox}{1946}) turned the problem under debate around and, for the first time, looked at it in a constructive way.
+Instead of making dogmatic \emph{assertions} that it is or is not legitimate to use probability in the sense of degree of plausibility rather than frequency, he had the good sense to ask a \emph{question}:
+Is it possible to construct a consistent set of mathematical rules for carrying out plausible, rather than deductive, reasoning?
+He found that, if we try to represent degrees of plausibility by real numbers, then the conditions of consistency can be stated in the form of functional equations, whose general solutions can be found.
+The results were: out of all possible monotonic functions which might in principle serve our purpose, there exists a particular scale on which to measure degrees of plausibility which we henceforth call \emph{probability}, with particularly simple properties.
+Denoting various propositions by $A$, $B$, etc., and using the notation, $AB\equiv\text{``Both A and B are true,''}$ $\conj{A}\equiv\text{``A is false,''}$ $p(A\given B) \equiv \text{probability of $A$ given $B$}$, the consistent rules of combination take the form of the familiar product rule and sum rule:
+\begin{align}
+	&P(AB\given C) = P(A\given BC) \cdot P(B\given C)\label{A8}\\
+	&P(A\given B) + P(\conj{A}\given B) = 1\label{A9}
+\end{align}
+By mathematical transformations we can, of course, alter the form of these rules; but what Cox proved was that any alteration of their content will enable us to exhibit inconsistencies (in the sense that two methods of calculation, each permitted by the rules, will yield different results).
+But \eqref{A8}, \eqref{A9} are, in fact, the basic rules of probability theory; all other equations needed for applications can be derived from them.
+Thus, Cox proved that any method of inference in which we represent degrees of plausibility by real numbers, is necessarily either equivalent to Laplace's, or inconsistent.
+
+For me, this was exactly the argument needed to clinch matters; for Cox's analysis makes no reference whatsoever to frequencies or random experiments.
+From the day I first read Cox's article I have never for a moment doubted the basic soundness and inevitability of the Laplace-Jeffreys methods, while recognizing that the theory needs further development to extend its range of applicability.
+
+Indeed, such further development was started by Jeffreys.
+Recall, in our narrative we left Laplace (or rather, Laplace left us) at Eq.~\eqref{A6}, seeing the need but not the means to make the transition to \eqref{A7}, which would open up an enormously wider range of applications for Bayesian inference.
+Since the function of the prior probabilities is to describe the prior information, we need to develop new or more general principles for determination of those priors by logical analysis of prior information when it does not consist of frequencies; just what should have been the next order of business after Laplace.
+
+Recognizing this, Jeffreys resumed the constructive development of this theory at the point where Laplace had left off.
+If we need to convert prior information into a prior probability assignment, perhaps we should start at the beginning and learn first how to express ``complete ignorance'' of a continuously variable parameter, where Bernoulli's principle will not apply.
+
+Bayes and Laplace had used uniform prior densities, as the most obvious analog of the Bernoulli uniform discrete assignment.
+But it was clear, even in the time of Laplace, that this rule is ambiguous because it is not invariant under a change of parameters.
+A uniform density for $\theta$ does not correspond to a uniform density for $\alpha=\theta^3$; or $\beta = \log \theta$; so for which choice of parameters should the uniform density apply?
+
+In the first (1939) Edition of his book, Jeffreys made a tentative start on this problem, in which he found his now famous rule: to express ignorance of a scale parameter $\sigma$, whose possible domain is $0<\sigma <\infty$, assign uniform prior density to its logarithm: $P(\sigma \given I) = \dd \sigma/\sigma$.
+The first arguments advanced in support of this rule were not particularly clear or convincing to others (including this writer).
+But other desiderata were found; and we have now succeeded in proving via the integral equations of marginalization theory (Jaynes, \cite{jaynes79}{1979}) that Jeffreys’ prior $\dd \sigma/\sigma$ is, in fact, uniquely determined as the only prior for a scale parameter that is ``completely uninformative'' in the sense that it leads us to the same conclusions about other parameters $\theta$ as if the parameter $\sigma$ had been removed from the model [see Eq.~\eqref{C33} below].
+
+In the second (1948) Edition, Jeffreys gave a much more general ``Invariance Theory'' for determining ignorance priors, which showed amazing prevision by coming within a hair's breadth of discovering both the principles of Maximum Entropy and Transformation Groups.
+He wrote down the actual entropy expression (note the date!), but then used it only to generate a quadratic form by expansion about its peak.
+Jeffreys’ invariance theory is still of great importance today, and the question of its relation to other methods that have been proposed is still under study.
+
+In the meantime, what had been happening in the sampling theory camp?
+The culmination of this approach came in the late 1940's when for the first time, Abraham Wald succeeded in removing all \emph{ad hockeries} and presenting general rules of conduct for making decisions in the face of uncertainty, that he proved to be uniquely optimal by certain very simple and compelling desiderata of reasonable behavior.
+But quickly a number of people--including I.~J.~Good (\cite{good}{1950}), L.~J.~Savage (\cite{savage}{1954}), and the present writer--realized independently that, if we just ignore Wald's entirely different vocabulary and diametrically opposed philosophy, and look only at the specific mathematical steps that were now to be used in solving specific problems, they were identical with the rules given by Laplace in the eighteenth century, which generations of statisticians had rejected as metaphysical nonsense!
+
+It is one of those ironies that make the history of science so interesting, that the missing Bayes-optimality proofs, which Laplace and Jeffreys had failed to supply, were at last found inadvertently, while trying to prove the opposite, by an early ardent disciple of the von Mises ``collective'' approach.
+It is also a tribute to Wald's intellectual honesty that he was able to recognize this, and in his final work (Wald, \cite{wald}{1950}) he called these optimal rules, ``Bayes strategies.''
+
+Thus came the ``Bayesian Revolution'' in statistics, which is now all but over.
+This writer's recent polemics (Jaynes, \cite{jaynes76}{1976}) will probably be one of the last battles waged.
+Today, most active research in statistics is Bayesian, a good deal of it directed to the above problem of determining priors by logical analysis; and the parts of sampling theory which do not lie in ruins are just the ones (such as sufficient statistics and sequential analysis) that can be justified in Bayesian terms.
+
+This history of basic statistical theory, showing how developments over more than two centuries set the stage naturally for the Principle of Maximum Entropy, has been recounted at some length because it is unfamiliar to most scientists and engineers.
+Although the second line converging on this principle is much better known to this audience, our account can be no briefer because there is so much to be unlearned.
+
+
+\subsection[The Second Line: Maxwell to Shannon]{The Second Line: Maxwell, Boltzmann, Gibbs, Shannon}
+Over the past 120 years another line of development was taking place, which had astonishingly little contact with the ``statistical inference'' line just described.
+In the 1850's James Clerk Maxwell started the first serious work on the application of probability analysis to the kinetic theory of gases.
+He was confronted immediately with the problem of assigning initial probabilities to various positions and velocities of molecules.
+To see how he dealt with it, we quote his first (1859) words on the problem of finding the probability distribution for velocity direction of a spherical molecules after an impact: ``\emph{In order that a collision may take place, the line of motion of one of the balls must pass the center of the other at a distance less than the sum of their radii; that is, it must pass through a circle whose centre is that of the other ball, and radius the sum of the radii of the balls. Within this circle every position is equally probable, and therefore ---.}''
+
+Here again, as that necessary first step in a probability analysis, Maxwell had to apply the Principle of Indifference; in this case to a two-dimensional continuous variable.
+But already at this point we see a new feature.
+As long as we talk about some abstract quantity $\theta$ without specifying its physical meaning, we see no reason why we could not as well work with $\alpha=\theta^3$, or $\beta = \log \theta$; and there is an unresolved ambiguity.
+But as soon as we learn that our quantity has the physical meaning of position within the circular collision cross-section, our intuition takes over with a compelling force and tells us that the probability of impinging on any particular region should be taken proportional to the area of that region; and not to the cube of the area, or the logarithm of the area.
+If we toss pennies onto a wooden floor, something inside us convinces us that the probability of landing on any one plank should be taken proportional to the width of the plank; and not to the cube of the width, or the logarithm of the width.
+
+In other words, merely knowing the physical meaning of our parameters, already constitutes highly relevant prior information which our intuition is able to use at once; in favorable cases its effect is to give us an inner conviction that there is no ambiguity after all in applying the Principle of Indifference.
+Can we analyze how our intuition does this, extract the essence, and express it as a formal mathematical principle that might apply in cases where our intuition fails us?
+This problem is not completely solved today, although I believe we have made a good start on it in the principle of transformation groups (Jaynes, \cite{jaynes68}{1968}, \cite{jaynes73}{1973}, \cite{jaynes79}{1979}).
+Perhaps these remarks will encourage others to try their hand at resolving these puzzles; this is an area where important new results might turn up with comparatively little effort, given the right inspiration on how to approach them.
+
+Maxwell built a lengthy, highly non-trivial, and needless to say, successful analysis on the foundation just quoted.
+He was able to predict such things as the equation of state, velocity distribution law, diffusion coefficient, viscosity, and thermal conductivity of the gas.
+The case of viscosity was particularly interesting because Maxwell's theory led to the prediction that viscosity is independent of density, which seemed to contradict common sense.
+But when the experiments were performed, they confirmed Maxwell's prediction; and what had seemed a difficulty with his theory became its greatest triumph.
+
+\subsection*{Enter Boltzmann}
+So far we have considered only the problem of expressing initial ignorance by a probability assignment.
+This is the first fundamental problem, since ``complete initial ignorance'' is the natural and inevitable starting point from which to measure our positive knowledge; just as zero is the natural and inevitable starting point when we add a column of numbers.
+But in most real problems we do not have initial ignorance about the questions to be answered.
+Indeed, unless we had some definite prior knowledge about the parameters to be measured or the hypotheses to be tested, we would seldom have either the means or the motivation to plan an experiment to get more knowledge.
+But to express positive initial knowledge by a probability assignment is just the problem of getting from \eqref{A6} to \eqref{A7}, bequeathed to us by Laplace.
+The first step toward finding an explicit solution to this problem was made by Boltzmann, although it was stated in very different terms at the time.
+He wanted to find how molecules will distribute themselves in a conservative force field (say, a gravitational or centrifugal field; or an electric field acting on ions).
+The force acting on a molecule at position $x$ is then $F=-\tgrad \phi$, where $\phi(x)$ is its potential energy.
+A molecule with mass $m$, position $x$, velocity $v$ thus has energy $E= \frac{1}{2}mv^2 +\phi(x)$.
+We neglect the interaction energy of molecules with each other and suppose they are enclosed in a container of volume $V$, whose walls are rigid and impermeable to both molecules and heat.
+But Boltzmann was not completely ignorant about how the molecules are distributed, because he knew that however they move, the total number $N$ of molecules present cannot change, and the total energy
+\begin{equation}
+	\label{A10}
+	E = \sum_{i=1}^{N} \left(\frac{1}{2}mv_i^2 + \phi(x_i)\right)
+\end{equation}
+must remain constant.
+Because of the energy constraint, evidently, all positions and velocities are not equally likely.
+
+At this point, Boltzmann found it easier to think about discrete distributions than continuous ones (a kind of prevision of quantum theory); and so he divided the phase space (position-momentum space) available to the molecules into discrete cells.
+In principle, these could be defined in any way; but let us think of the $k$'th cell as being a region $R_k$ so small that the energy $E_k$, of a molecule does not vary appreciably within it; but also so large that it can accommodate a large number, $N_k \gg 1$, of molecules.
+The cells $\{R_k, 1<k<s\}$ are to fill up the accessible phase space (which because of the energy constraint has a finite volume) without overlapping.
+
+The problem is then: given $N$, $E$, and $\phi(x)$, what is the best prediction we can make of the number of $N_k$ of molecules in $R_k$?
+In Boltzmann's reasoning at this point, we have the	beginning of the Principle of Maximum Entropy.
+He asked first in how many ways could a given set of occupation numbers $N_k$ be realized?
+The answer is the multinomial coefficient
+\begin{equation}
+	\label{A11}
+	W(N_k) = \frac{N!}{N_1!N_2!\cdots N_s!}
+\end{equation}
+This particular distribution will have total energy
+\begin{equation}
+	\label{A12}
+	E = \sum_{k=1}^{s} N_k E_k
+\end{equation}
+and of course, the $N_k$ are also constrained by
+\begin{equation}
+	\label{A13}
+	N = \sum_{i=1}^{s} N_k
+\end{equation}
+Now any set $\{N_k\}$ of occupation numbers for which $E$, $N$ agree with the given information, represents a possible distribution, compatible with all that is specified.
+Out of the millions of such possible distributions, which is most likely to be realized?
+Boltzmann's answer was that the ``most probable'' distribution is the one that can be realized in the greatest number of ways. i.e., the one that maximizes \eqref{A11} subject to the constraints \eqref{A12}, \eqref{A13}, if the cells are equally large (phase volume).
+
+Since the $N_k$ are large, we may use the Stirling approximation for the factorials, whereupon \eqref{A11} can be written
+\begin{equation}
+	\label{A14}
+	\log W = -N \sum_{i=1}^{s} \left(\frac{N_k}{N}\right)\log \left(\frac{N_k}{N}\right)
+\end{equation}
+The mathematical solution by Lagrange multipliers is straightforward, and the result is: the ``most probable'' value of $N_k$ is
+\begin{equation}
+	\label{A15}
+	\hat{N}_k = \frac{N}{Z(\beta)} \exp(-\beta E_k)
+\end{equation}
+where
+\begin{equation}
+	\label{A16}
+	Z(\beta) \equiv \sum_{k=1}^{s} \exp(-\beta E_k)
+\end{equation}
+and the parameter $\beta$ is to be chosen so that the energy constraint \eqref{A12} is satisfied.
+
+This simple result contains a great deal of physical information.
+Let us choose a particular set of cells $R_k$ as follows.
+Divide up the coordinate space $V$ and the velocity space into cells $X_a$, $Y_b$ respectively, such that the potential and kinetic energies $\phi(x)$, $\frac{1}{2}mv^2$ do not vary appreciably within them and take and take $R_k = X_a \otimes Y_b$.
+Then, writing $N_k= N_{ab}$, Boltzmann's prediction of the number of molecules in $X_a$ irrespective of their velocity, is from \eqref{A15}
+\begin{equation}
+	\label{A17}
+	\hat{N}_a = \sum_{b}\hat{N}_{ab} = A(\beta) \exp(-\beta\phi_a)
+\end{equation}
+where the normalization constant $A(\beta)$ is determined from $\sum N_a = N$.
+This is the famous Boltzmann distribution law.
+In
+a gravitational field, $\phi(x) = mgz$, it gives the usual ``barometric formula'' for decrease of the atmospheric density with height:
+\begin{equation}
+	\label{A18}
+	\rho(z) = \rho(0) \exp(-\beta mgz)
+\end{equation}
+Now this can be deduced also from the macroscopic equation of state: for one mole, $PV=RT$, or
+\begin{equation*}
+	P(z) = (RT/mN_0)\rho(z)
+\end{equation*}
+where $N_0$ is Avogadro's number.
+But hydrostatic equilibrium requires $-\dd P/\dd z = g\rho(z)$, which gives on integration, for uniform temperature
+\begin{equation*}
+	\rho(z) = \rho(0) \exp(-N_0 mgz/RT)
+\end{equation*}
+Comparing with \eqref{A18}, we find the meaning of the parameter: $\beta = (kT)^{-1}$ where $T$ is the Kelvin temperature and $k = R/N_0$ is Boltzmann's constant.
+
+We can, equally well, sum \eqref{A15} over the space cells $X_a$, and find the predicted number of molecules with velocity in the cell $Y_b$, irrespective of their position in space; but a far more interesting result is contained already in \eqref{A15} without this summation.
+Let us ask, instead; What fraction of the molecules in the space cell $X_a$, are predicted to have velocity in the cell $v_b$ in $Y_b$? This is, from \eqref{A15} and \eqref{A17},
+\begin{equation}
+	\label{A20} % Mistake in original. Propagated only upto equation label here
+	f_b = \hat{N}_{ab}/\hat{N}_a = B(\beta) \exp (-\beta mv^2_b/2)
+\end{equation}
+This is  of course, just the Maxwellian velocity distribution law; but with the new and at first sight astonishing feature that it is independent of position in space.
+Even though the force field is accelerating and decelerating molecules as they move from one region to another, when they arrive at their new location they have exactly the same mean square velocity as when they started!
+If this result is correct (as indeed it proved to be) it means that a Maxwellian velocity distribution, once established, is maintained automatically, without any help from collisions, as the molecules move about in any conservative force field.
+
+From Boltzmann's reasoning, then, we get a very unexpected and nontrivial dynamical prediction by an analysis that, seemingly, ignores the dynamics altogether!
+This is only the first of many such examples where it appears that we are ``getting something for nothing,'' the answer coming too easily to believe.
+Poincaré, in his essays on ``Science and Method,'' felt this paradox very keenly, and wondered how by exploiting our ignorance we can make correct predictions in a few lines of calculation, that would be quite impossible to obtain if we attempted a detailed calculation of the $10^{23}$ individual trajectories.
+
+It requires very deep thought to understand why we are not, in this argument and others to come, getting something for nothing.
+In fact, Boltzmann's argument does take the dynamics into account, but in a very efficient manner.
+Information about the dynamics entered his equations at two places: (1) the conservation of total energy; and (2) the fact that he defined his cells in terms of phase volume, which is conserved in the dynamical motion (Liouville's theorem).
+The fact that this was enough to predict the correct spatial and velocity distribution of the molecules shows that the millions of intricate dynamical details that were not taken into account, were actually irrelevant to the predictions, and would have cancelled out anyway if he had taken the trouble to calculate them.
+
+Boltzmann's reasoning was super-efficient; far more so than he ever realized.
+Whether by luck or inspiration, he put into his equations only the dynamical information that happened to be relevant to the questions he was asking.
+Obviously, it would be of some importance to discover the secret of how this come about, and to understand it so well that we can exploit it in other problems.
+
+If we can learn how to recognize and remove irrelevant information at the beginning of a problem, we shall be spared having to carry out immense calculations, only to discover at the end that practically everything we calculated was irrelevant to the question we were asking.
+And that is exactly what we are after by applying Information Theory [actually, the secret was revealed in my second paper (Jaynes, \cite{jaynes57}{1957b}); but to the best of my knowledge no other person has yet noticed it there; so I will explain it again in Section~\ref{sec:D} below.
+The point is that Boltzmann was asking only questions about experimentally reproducible equilibrium properties].
+
+In Boltzmann's ``method of the most probable distribution,'' we have already the essential mathematical content of the Principle of Maximum Entropy.
+But in spite of the conventional name, it did not really involve probability.
+Boltzmann was not trying to calculate a probability distribution; he was estimating some physically real occupation numbers $N_k$, by a criterion (value of $W$) that counts the number of real physical possibilities; a definite number that has nothing to do with anybody's state of knowledge.
+The transition from this to our present more abstract Principle of Maximum Entropy, although mathematically trivial, was so difficult conceptually that it required almost another century to bring about.
+In fact, this required three more steps and even today the development of irreversible Statistical Mechanics is being held up as much by conceptual difficulties as by mathematical ones.
+
+\subsection*{Enter Gibbs}
+Curiously, the ideas that we associate today with the name of Gibbs were stated briefly in an early work of Boltzmann (\cite{boltzmann}{1871}); but were not pursued as Boltzmann became occupied with his more specialized H-theorem.
+Further development of the general theory was therefore left to Gibbs (\cite{gibbs}{1902}).
+The Boltzmann argument just given will not work when the molecules have appreciable interactions, since then the total energy cannot be written in the additive form \eqref{A12}.
+So we go to a much more abstract picture.
+Whereas the preceding argument was applied to an actually existing large collection of molecules, we now let the entire macroscopic system of interest become, in effect, a ``molecule,'' and imagine a large collection of copies of it.
+
+
+This idea, and even the term ``phase'' to stand for the collection of all coordinates and momenta, appears also in a work of Maxwell (\cite{maxwell76}{1876}).
+Therefore, when Gibbs adopted this notion, which he called an ``ensemble,'' it was not, as is apparently thought by those who use the term ``Gibbs ensemble,'' an innovation on his part.
+He used ensemble language rather as a concession to an already established custom.
+The idea became associated later with the von Mises ``Kollektiv'' but was actually much older, dating back to Venn (\cite{venn}{1866}); and Fechner's book \emph{Kollektivmasslehre} appeared in 1897.
+
+It is important for our purposes to appreciate this little historical fact and to note that, far from having invented the notion of an ensemble, Gibbs himself (\emph{loc cit.}, p.~17) de-emphasized its importance.
+We can detect a hint of cynicism in his words when he states: ``It is in fact customary in the discussion of probabilities to describe anything which is imperfectly known as something taken at random from a great number of things which are completely described.''
+He continues that, if we prefer to avoid any reference to an ensemble of systems, we may recognize that we are merely talking about ``the probability that the phase of a system falls within certain limits at a certain time ---.''
+
+In other words, even in 1902 it was customary to talk about a probability as if it were a frequency; even if it is a frequency only in an imaginary \emph{ad hoc} collection invented just for that purpose.
+Of course, any probability whatsoever can be thought of in this way if one wishes to; but Gibbs recognized that in fact we are only describing our imperfect knowledge about a single system.
+
+The reason it is important to appreciate this is that we then understand Gibbs’ later treatment of several topics, one of which had been thought to be a serious omission on his part.
+If we are describing only a state of knowledge about a single system, then clearly there can be nothing physically real about frequencies in the ensemble; and it makes no sense to ask, ``which ensemble is the correct one?''
+In other words: different ensembles are not in $1:1$ correspondence with different physical situations; they correspond only to different states of knowledge about a single physical situation.
+Gibbs understood this clearly; and that, I suggest, is the reason why he does not say a word about ergodic theorems, or hypotheses, but instead gives a totally different reason for his choice of the canonical ensembles.
+
+Technical details of Gibbs' work will be deferred to Sec.~\ref{sec:D} below, where we generalize his algorithm.
+Suffice it to say here that Gibbs introduces his canonical ensemble, and works out its properties, without explaining why he chooses that particular distribution.
+Only in Chap. XII, after its properties--including its maximum entropy property--have been set forth, does he note that the distribution with the minimum expectation of $\log p$ (i.e., maximum entropy) for a prescribed distribution of the constants of the motion has certain desirable properties.
+In fact, this criterion suffices to generate all the ensembles--canonical, grand canonical, microcanonical, and rotational--discussed by Gibbs.
+
+This is, clearly, just a generalized form of the Principle of Indifference.
+The possibility of a different justification in the frequency sense, via ergodic theorems, had been discussed by Maxwell, Boltzmann, and others for some thirty years; as noted in more detail before (Jaynes, \cite{jaynes67}{1967}) if Gibbs thought that any such further justification was needed, it is certainly curious that he neglected to mention it.
+
+After Gibbs’ work, however, the frequency view of probability took such absolute control over men's minds that the ensemble became something physically real, to the extent that the following phraseology appears.
+Thermal equilibrium is defined as the situation where the system is ``in a canonical distribution.''
+Assignment of uniform prior probabilities was considered to be not a mere description of a state of knowledge, but a basic postulate of physical fact, justified by the agreement of our predictions with experiment.
+
+In my student days this was the kind of language always used, although it seemed to me absurd; the individual system is not ``in a distribution;'' it is in a \emph{state}.
+The experiments, moreover, do not verify ``equal \emph{a priori} probabilities'' or ``random \emph{a priori} phases;'' they verify only the predicted macroscopic equation of state, heat capacity, etc., and the predictions for these would have been the same for many ensembles, uniform or nonuniform microscopically.
+Therefore, the reason for the success of Statistical Mechanics must be altogether different from our having found the ``correct'' ensemble.
+
+Intuitively, it must be true that use of the canonical ensemble, while sufficient to predict thermal equilibrium properties, is very far from necessary; in some sense, ``almost every'' member of a very wide class of ensembles would all lead to the same predictions for the particular macroscopic quantities actually observed.
+But I did not have any hint as to exactly what that class is; and needless to say, had not the faintest success in persuading anyone else of such heretical views.
+
+We stress that, on this matter of the exact status of ensembles, you have to read Gibbs’ own words in order to know accurately what his position was.
+For example, ter Haar (\cite{haar}{1954}, p. 128) tells us that ``Gibbs introduced ensembles in order to use them for statistical considerations rather than to illustrate the behavior of physical systems ---.''
+But Gibbs himself (\emph{loc. cit.} p. 150) says, ``--- our ensembles are chosen to illustrate the probabilities of events in the real world ---.''
+
+It might be thought that such questions are only matters of personal taste, and a scientist ought to occupy himself with more serious things.
+But one's personal taste determines which research problems he believes to be the important ones in need of attention; and the total domination by the frequency view caused all attention to be directed instead to the aforementioned ``ergodic'' problems; to justify the methods of Statistical Mechanics by proving from the dynamic equations of motion that the canonical ensemble correctly represents the frequencies with which, over a long time, an individual system coupled to a heat bath, finds itself in various states.
+
+This problem metamorphosed from the original conception of Boltzmann and Maxwell that the phase point of an isolated (system + heat bath) ultimately passes through every state compatible with the total energy, to the statement that the time average of any phase function $f(p,q)$ for a single system is equal to the ensemble average of $f$; and this statement in turn was reduced (by von Neumann and Birkhoff in the 1930's) to the condition of metric transitivity (i.e., the full phase space shall have no subspace of positive measure that is invariant under the motion).
+But here things become extremely complicated, and there is little further progress.
+For example, even if one proves that in a certain sense ``almost every'' continuous flow is metrically transitive, one would still have to prove that the particular flows generated by a Hamiltonian are not exceptions.
+
+Such a proof certainly cannot be given in generality, since counter examples are known.
+One such is worth noting: in the writer's ``Neoclassical Theory'' of electrodynamics (Jaynes, \cite{jaynes73}{1973}) we write a complete classical Hamiltonian system of equations for an atom (represented as a set of harmonic oscillators) interacting with light.
+But we find [\emph{loc. cit.} Eq. (52)] that not only is the total energy a constant of the motion, the quantity $\sum_n W_n/\nu_n$ is conserved, where $W_n$, $\nu_n$ are the energy and frequency of the $n$th normal mode of oscillation of the atom.
+
+Setting this new constant of the motion equal to Planck's constant $h$, we have a classical derivation of the $E=h\nu$ law usually associated with quantum theory!
+Indeed, quantum theory simply takes this as a basic empirically justified postulate; and never makes any attempt to explain why such a relation exists.
+In Neoclassical Theory it is explained as a consequence of a new uniform integral of the motion, of a type never suspected in classical Statistical Mechanics.
+Because of it, for example, there is no Liouville theorem in the ``action shell'' subspace of states actually accessible to the system, and statistical properties of the motion are qualitatively different from those of the usual classical Statistical Mechanics.
+But all this emerges from a simple, innocent-looking classical Hamiltonian, involving only harmonic oscillators with a particular coupling law (linear in the field oscillators, bilinear in the atom oscillators). Having seen this example, who can be sure that the same thing is not happening more generally?
+
+his was recognized by Truesdell (\cite{truesdell}{1960}) in a work that I recommend as by far the clearest exposition, carried to the most far-reaching physical results, of any discussion of ergodic theory.
+He comes up against, ``--- an old problem, one of the ugliest which the student of statistical mechanics must face: What can be said about the integrals of a dynamical system?''
+The answer is, ``Practically nothing.''
+In view of such simple counter-examples as that provided by Neoclassical theory, confident statements to the effect that real systems are almost certainly ergodic, seem like so much whistling in the dark.
+
+Nevertheless, ergodic theory considered as a topic in its own right, does contain some important results.
+Unlike some others, Truesdell does not confuse the issue by trying to mix up probability notions and dynamical ones.
+Instead, he states unequivocally that his purpose is to calculate time averages.
+This is a definite, well posed dynamical problem, having nothing to do with any probability considerations; and Truesdell proceeds to show, in greater depth than any other writer known to me, exactly what implications the Birkhoff theorem has for this question.
+Since we cannot prove, and in view of counterexamples have no valid reason to expect, that the flow is metrically transitive over the entire phase space $S$, the original hopes of Boltzmann and Maxwell must remain unrealized; but in return for this we get something far more valuable, which just misses being noticed.
+
+The flow will be metrically transitive on some (unknown) sub-space $S'$ determined by the (unknown) uniform integrals of the motion; and the time average of any phase function $f(p,q)$ will, by the Birkhoff theorem, be equal to its phase space, average over that subspace.
+Furthermore, the fraction of time that the system spends in any particular region $s$ in $S'$ is equal to the ratio of phase volumes: $\sigma(s)/\sigma(S')$.
+
+These are just the properties that Boltzmann and Maxwell wanted; but they apply only to some subspace S' \emph{which cannot be known until we have determined all the uniform integrals of the motion}. That is the purely dynamical theorem; and I think that if today we could resurrect Maxwell and tell it to him, his reaction would be: ``Of course, that is obviously right and it is just what I was trying to say. The trouble was that I was groping for words, because in my day we did not have the mathematical vocabulary, arising out of measure theory and the theory of transformation groups, that is needed to state it precisely.''
+
+That more valuable result is tantalizingly close when Truesdell considers ``--- the idea that however many integrals a system has, generally we shall not know the value of any but the energy, so we should assign equal \emph{a priori} probability to the possible values of the rest, which amounts to disregarding the rest of them. Now an idea of this sort, by itself, is just unsound.''
+It is indeed unsound, in the context of Truesdell's purpose to calculate correct time averages from the dynamics; for those time averages must in general depend on all the integrals of the motion, whether or not we happen to know about them.
+
+The point that he just fails to see is that if, nevertheless, we only have the courage to go ahead and do the calculation he rejects as unsound, we can then compare its results with experimental time averages.
+If they disagree, then \emph{we have obtained experimental evidence of the existence of new integrals of the motion}, and the nature of the deviation gives a clue as to what they may be.
+So, if our calculation should indeed prove to be ``unsound,'' the result would be far more valuable to physics than a ``successful'' calculation!
+
+To all this, however, one proviso must be added.
+Even if one could prove transitivity for the entire phase space, this result would not explain the success of equilibrium statistical mechanics, for reasons expounded in great detail before (Jaynes, \cite{jaynes67}{1967}).
+These theorems apply only to time averages over enormous (strictly, infinite) time; and an average over a finite time $T$ will approach its limiting value for $T\to\infty$ only if $T$ is so long that the phase point of the system has explored a ``representative sample'' of the accessible phase volume.
+But the very existence of time-dependent irreversible processes shows that the ``representative sampling time'' must be very long compared to the time in which our measurements are made.
+So the equality of phase space averages with infinite time averages fails, on two counts, to explain the equality of canonical ensemble averages and experimental values.
+We can conclude only that the ``ergodic'' attempts to justify Gibbs' statistical mechanics foundered not only on impossibly difficult technical problems of integrals of the motion; but also on a basic logical defect arising from the impossibly long averaging times.
+
+\subsection*{Enter Shannon}
+It was the work of Claude Shannon (\cite{shannon}{1948}) on Information Theory which showed us the way out of this dilemma.
+Like all major advances, it had many precursors, whose full significance could be seen only later.
+One finds them not only in the work of Boltzmann and Gibbs just noted, but also in that of G.~N.~Lewis, L.~Szilard, J.~von Neumann, and W.~Elsasser, to mention only the most obvious examples.
+
+Shannon's articles appeared just at the time when I was taking a course in Statistical Mechanics from Professor Eugene Wigner; and my mind was occupied with the difficulties, which he always took care to stress, faced by the theory at that time; the short sketch above notes only a few of them.
+Reading Shannon filled me with the same admiration that all readers felt, for the beauty and importance of the material; but also with a growing uneasiness about its meaning.
+In a communication process, the message $M_i$ is assigned probability $p_i$, and the entropy $H=-\sum p_i \log p_i$ is a measure of ``information.''
+But \emph{whose} information?
+It seems at first that if information is being ``sent,'' it must be possessed by the sender.
+But the sender knows perfectly well which message he wants to send; what could it possibly mean to speak of the \emph{probability} that he will send message $M_i$?
+
+We take a step in the direction of making sense out of this if we suppose that $H$ measures, not the information of the sender, but the ignorance of the receiver, that is removed by receipt of the message.
+Indeed, many subsequent commentators appear to adopt this interpretation.
+Shannon, however, proceeds to use $H$ to determine the channel capacity $C$ required to transmit the message at a given rate.
+But whether a channel can or cannot transmit message $M$ in time $T$ obviously depends only on properties of the message and the channel--and not at all on the prior ignorance of the receiver!
+So this interpretation will not work either.
+
+Agonizing over this, I was driven to conclude that the different messages considered must be the set of all those that will, or might be, sent over the channel during its useful life; and therefore Shannon's $H$ measures the degree of ignorance of the communication engineer when he designs the technical equipment in the channel.
+Such a viewpoint would, to say the least, seem natural to an engineer employed by the Bell Telephone Laboratories--yet it is curious that nowhere does Shannon see fit to tell the reader explicitly whose state of knowledge he is considering, although the whole content of the theory depends crucially on this.
+
+It is the obvious importance of Shannon's theorems that first commands our attention and respect; but as I realized only later, it was just his vagueness on these conceptual questions-~-allowing every reader to interpret the work in his own way--that made Shannon's writings, like those of Niels Bohr, so eminently suited to become the Scriptures of a new Religion, as they so quickly did in both cases.
+
+Of course, we do not for a moment suggest that Shannon was deliberately vague; indeed, on other matters few writers have achieved such clarity and precision.
+Rather, I think, a certain amount of caution was forced on him by a growing paradox that Information Theory generates within the milieu of probability theory as it was then conceived—-a paradox only vaguely sensed by those who had been taught only the strict frequency definition of probability, and clearly visible only to those familiar with the work of Jeffreys and Cox.
+What do the probabilities $p_i$ mean?
+Do they stand for the frequencies with which the different messages are sent?
+
+Think, for a moment, about the last telegram you sent or received.
+If the Western Union Company remains in business for another ten thousand years, how many times do you think it will be asked to transmit that identical message?
+
+The situation here is not really different from that in statistical mechanics, where our first job is to assign probabilities to the various possible quantum states of a system.
+In both cases the number of possibilities is so great that a time millions of times the age of the universe would not suffice to realize all of them.
+But it seems to be much easier to  think clearly about messages than quantum states.
+Here at last, it seemed to me, was an example where the absurdity of a frequency interpretation is so obvious that no one can fail to see it; but the usefulness of the probability approach was equally clear.
+The probabilities assigned to individual messages are not measurable frequencies; they are only a means of describing a \emph{state of knowledge}; just the original sense in which Laplace and Jeffreys interpreted a probability distribution.
+
+The reason for the vagueness is then apparent; to a person who has been trained to think of probability \emph{only} in the sense of frequency in a random experiment (as was surely the case for anyone educated at M.I.T. in the 1930's!), the idea that a probability distribution represents a mere state of knowledge is strictly taboo.
+A probability distribution would not be ``objective'' unless it represents a real physical situation.
+The question: ``\emph{Whose} information are we describing?'' doesn't make sense, because the notion of a probability \emph{for a person with a certain state of knowledge} just doesn't exist.
+So Shannon is forced to do the most careful egg-walking, \emph{speaking} of a probability as if it were a real, measurable frequency, while \emph{using} it in a way that shows clearly that it is not.
+
+For example, Shannon considers the entropies $H_1$ calculated from single letter frequencies, $H_2$ from digram frequencies, $H_3$ from trigram frequencies, etc., as a sequence of successive approximations to the ``true'' entropy of the source, which is $H=\lim H_n$ for $n\to\infty$.
+Application of his theorems presupposes that all this is known.
+But suppose we try to determine the ``true'' ten-gram frequencies of English text.
+The number of different ten-grams is about $1.4\times 10^{14}$; to determine them all to something like five percent accuracy, we should need a sample of English text containing about $10^{17}$ ten-grams.
+That is thousands of times greater than all the English text in the Library of Congress, and indeed much greater than all the English text recorded since the invention of printing.
+
+If we had overcome that difficulty, and could measure those ten-gram frequencies (by scanning the entire text) at the rate of $1000$ per second, it would require about $4400$ years to take the data; and to record it on paper at a rate of $1000$ entries per sheet, would require a stack of paper about $7000$ miles high.
+Evidently, then, we are destined never to know the ``true'' entropy of the English language; and in the application of Shannon's theorems to real communication systems we shall have to accept some compromise.
+
+Now, our story reaches its climax.
+Shannon discusses the problem of encoding a message, say English text, into binary digits in the most efficient way.
+The essential step is to assign probabilities to each of the conceivable messages, in a way which incorporates the prior knowledge we have about the structure of English.
+Having this probability assignment, a construction found independently by Shannon and R.~M.~Fano yields the encoding rules which minimize the expected transmission time of a message.
+
+But, as noted, we shall never know the ``true'' probabilities of English messages; and so Shannon suggests the principle by which we may construct the distribution $p$; actually used for applications: "---we may choose to use some of our statistical knowledge of English in constructing a code, but not all of it. In such a case we consider the source with the \emph{maximum entropy subject to the statistical conditions we wish to retain}. The entropy of this source determines the channel capacity, which is necessary and sufficient.'' [emphasis mine].
+
+Shannon does not follow up this suggestion with the equations, but turns at this point to other matters.
+But if you start to solve this problem of maximizing the entropy subject to certain constraints, you will soon discover that you are writing down some very familiar equations.
+The probability distribution over messages is just the Gibbs canonical distribution with certain parameters.
+To find the values of the parameters, you must evaluate a certain partition function, etc.
+Here was a problem of statistical inference--or what is the same thing, statistical decision theory--in which we are to decide on the best way of encoding a message, making use of certain partial information about the message.
+The solution turns out to be mathematically identical with the Gibbs formalism of statistical mechanics, which physicists had been trying, long and unsuccessfully, to justify in an entirely different way.
+
+The conclusion, it seemed to me, was inescapable.
+We can have our justification for the rules of statistical mechanics, in a way that is incomparably simpler than anyone had thought possible, if we are willing to pay the price.
+The price is simply that we must loosen the connections between probability and frequency, by returning to the original viewpoint of Bernoulli and Laplace.
+The only new feature is that their Principle of Insufficient Reason is now generalized to the Principle of Maximum Entropy.
+Once this is accepted, the general formalism of statistical mechanics--partition functions, grand canonical ensemble, laws of thermodynamics, fluctuation laws--can be derived in a few lines without wasting a minute on ergodic theory.
+The pedagogical implications are clear.
+
+The price we have paid for this simplification is that we cannot interpret the canonical distribution as giving the frequencies with which a system goes into the various states.
+But nobody had ever justified or needed that interpretation anyway.
+In recognizing that the canonical distribution represents only our state of knowledge when we have certain partial information derived from macroscopic measurements, we are not losing anything we had before, but only frankly admitting the situation that has always existed; and indeed, which Gibbs had recognized.
+
+On the other hand, what we have gained by this change in interpretation is far more than we bargained for.
+Even if one had been completely successful in proving ergodic theorems, and had continued to ignore the difficulty about length of time over which the averages have to be taken, this still would have given a justification for the methods of Gibbs only in the equilibrium case.
+But the principle of maximum entropy, being entirely independent of the equations of motion, contains no such restriction.
+If one grants that it represents a valid method of reasoning at all, one must grant that it gives us also the long-hoped-for general formalism for treatment of irreversible processes!
+
+The last statement above breaks into new ground, and claims for statistical mechanics based on Information Theory, a far wider range of validity and applicability than was ever claimed for conventional statistical mechanics.
+Just for that reason, the issue is no longer one of mere philosophical preference for one viewpoint or another; the issue is now one of definite mathematical fact.
+For the assertion just made can be put to the test by carrying out specific calculations, and will prove to be either right or wrong.
+
+\subsection{Some Personal Recollections}
+All this was clear to me by 1951; nevertheless, no attempt at publication was made for another five years.
+There were technical problems of extending the formalism to continuous distributions and the density matrix, that were not solved for many years; but the reason for the initial delay was quite different.
+
+In the Summer of 1951, Professor G. Uhlenbeck gave his famous course on Statistical Mechanics at Stanford, and following the lectures I had many conversations with him, over lunch, about the foundations of the theory and current progress on it.
+I had expected, naively, that he would be enthusiastic about Shannon's work, and as eager as I to exploit these ideas for Statistical Mechanics.
+Instead, he seemed to think that the basic problems were, in principle, solved by the then recent work of Bogoliubov and van Hove (which seemed to me filling in details, but not touching at all on the real basic problems)--and adamantly rejected all suggestions that there is any connection between entropy and information.
+
+His initial reaction to my remarks was exactly like my initial reaction to Shannon's: ``Whose information?'' His position, which I never succeeded in shaking one iota, was: ``Entropy cannot be a measure of `amount of ignorance,' because different people have different amounts of ignorance; entropy is a definite physical quantity that can be measured in the laboratory with thermometers and calorimeters.''
+Although the answer to this was clear in my own mind, I was unable, at the time, to convey that answer to him.
+In trying to explain a new idea I was, like Maxwell, groping for words because the way of thinking and habits of language then current had to be broken before I could express a different way of thinking.
+
+Today, it seems trivially easy to answer Professor Uhlenbeck's objection as follows:
+``Certainly, different people have different amounts of ignorance.
+The entropy of a thermodynamic system is a measure of the degree of ignorance of a person whose \emph{sole knowledge about its microstate consists of the values of the macroscopic quantities $X_i$ which define its thermodynamic state}. This is a completely `objective' quantity, in the sense that it is a function only of the $X_i$, and does not depend on anybody's personality. There is then no reason why it cannot be measured in the laboratory.''
+
+It was my total inability to communicate this argument to Professor Uhlenbeck that caused me to spend another five years thinking over these matters, trying to write down my thoughts more clearly and explicitly, and making sure in my own mind that I could answer all the objections that Uhlenbeck and others had raised.
+Finally, in the Summer of 1956 I collected this into two papers, sending the first off to the Physical Review on August 29.
+
+Now another irony takes place; it is left to the Reader to guess to whom the Editor (S. Goudsmit) sent it for refereeing.
+That Unknown Referee's comments (now framed on my office wall as an encouragement to young men who today have to fight for new ideas against an Establishment that wants only new mathematics) opine that the work is clearly written, but since it expounds only a certain philosophy of interpretation and has no application whatsoever in Physics, it is out of place in a Physics journal.
+But a second referee thought differently, and so the papers were accepted after all, appearing in 1957.
+Within a year there were over 2000 requests for reprints.
+
+Needless to say, my own understanding of the technical problems continued to evolve for many years afterward.
+A schoolboy, having just learned the rules of arithmetic, does not see immediately how to apply them to the extraction of cube roots, although he has in his grasp all the principles needed for this.
+Similarly, I did not see how to set down the explicit equations for irreversible processes because I simply could not believe that the solution to such a complicated problem could be as simple as the Maximum Entropy Principle was giving; and spend six more years (1956-1962) trying to mutilate the principle by grafting new and more complicated rococo embellishments onto it. In my Brandeis lectures of 1962, tongue and pen somehow managed to state the right rule [Eq. (50)); but the inner mind did not fully assent; it still seemed
+like getting something for nothing.
+
+The final breakthrough came in the Christmas vacation period of 1962 when, after all else had failed, I finally had the courage to sit down and work out all the details of the calculations that result from using only the Maximum Entropy Principle; and nothing else.
+Within three days the new formalism was in hand, masses of the known correct results of Onsager, Wiener, Kirkwood, Callen, Kubo, Mori, MacLennon, were pouring out as special cases, just as fast as I could write them down; and it was clear that this was it.
+Two months later, my students were the first to have assigned homework problems to predict irreversible processes by solving Wiener-Hopf integral equations.
+
+As it turned out, no more principles were needed beyond those stated in my first paper; one has merely to take them absolutely literally and \emph{apply} them, putting into the equations the macroscopic information that one does, in fact, have about a nonequilibrium state; and all else follows inevitably.
+
+From this the reader will understand why I have considerable sympathy for those who today have difficulty in accepting the Principle of Maximum Entropy, because (1) the results seem to come too easily to believe; and (2) it seems at first glance as if the dynamics has been ignored.
+In fact, I struggled for eleven years with exactly the same feeling, before seeing clearly not only \emph{why}, but also in detail \emph{how} the formalism is able to function so efficiently.
+
+The point is that we are not ignoring the dynamics, and we are not getting something for nothing, because we are asking of the formalism only some extremely simple questions; we are asking only for predictions of \emph{experimentally reproducible} things; and for these, all circumstances that are not under the experimenter's control must, of necessity, be irrelevant.
+
+If certain macroscopically controlled conditions are found, in the laboratory, to be sufficient to determine a reproducible outcome, then it must follow that \emph{information} about those macroscopic conditions tells us everything about the microscopic state that is relevant for theoretical \emph{prediction} of that outcome.
+It may seem at first ``unsound'' to assign equal a priori probabilities to all other details, as the Maximum Entropy Principle does; but in fact we are assigning uniform probabilities only to details that are irrelevant for questions about reproducible phenomena.
+
+To assume further information by putting some additional fine-grained structure into our ensembles would, in all probability, not lead to incorrect predictions; it would only
+force us to calculate intricate details that would, in the end, cancel out of our final predictions.
+Solution by the Maximum Entropy Principle is so unbelievably simple just because it eliminates those irrelevant details right at the beginning of the calculation by averaging over them.
+
+To discover this argument requires only that one think, very carefully, about why Boltzmann's method of the most probable distribution was able to predict the correct spatial and velocity distribution of the molecules; and this could have been done at any time in the past 100 years.
+Whether or not one wishes to recognize it, this--and not ergodic properties--is the real reason why all Statistical Mechanics works.
+But once the argument is understood, it is clear that it applies equally well whether the macroscopic state is equilibrium or non-equilibrium, and whether the observed phenomenon is reversible or irreversible.
+
+I hope that this historical account will also convey to the reader that the Principle of Maximum Entropy, although a powerful tool, is hardly a radical innovation.
+Its philosophy was clearly foreshadowed by Laplace and Jeffreys; its mathematics by Boltzmann and Gibbs.

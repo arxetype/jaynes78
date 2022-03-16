@@ -1,0 +1,244 @@
+% !TEX TS-program = pdflatex
+
+\documentclass[fleqn, tbtags, twoside]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+% Page Structure
+\newlength{\alphabet}
+\settowidth{\alphabet}{\normalfont abcdefghijklmnopqrstuvwxyz}
+
+\usepackage{geometry}  % Set paper size, and textwidths. Roughly 65-75 chars per line.
+\geometry{
+	a5paper,
+	textwidth=2.2\alphabet,
+	hmarginratio=1:1,
+	bottom=0.75in,
+	top=0.8in,
+}
+
+\usepackage{parskip}  % Insert line between paragraphs and remove indents
+
+% Titles, Headers and Footers
+\usepackage[pagestyles, explicit]{titlesec}
+
+
+\renewcommand{\thesection}{\Alph{section}}
+\counterwithin{equation}{section}  % Reset equation counter after each section
+\renewcommand{\theequation}{\Alph{section}\arabic{equation}}
+
+
+\titleformat{\section}
+	[display]
+	{\LARGE}
+	{\filleft \bfseries \color{gray} \Huge { }\thesection}
+	{0pt}
+	{
+		\thispagestyle{plain}
+		\hyphenpenalty=10000
+		#1
+		\hrulefill
+	}
+
+
+
+\newcommand\stripnewline[1]{ {\let \\ \empty #1} }
+
+\newpagestyle{main}{
+	\sethead
+		[\thepage]
+		[]
+		[Sec. \thesection: \itshape \stripnewline{\sectiontitle}]
+		{\itshape Where do we stand on Maximum Entropy}
+		{}
+		{\thepage}
+}
+
+% Table of Contents
+\usepackage{titletoc}
+
+\titlecontents{section}  % Section
+	[3em]                             								% Left
+	{\filcenter\vspace*{0.5\baselineskip}}      					% Above code
+	{\color{\linkcolor}\scshape \bfseries\thecontentslabel.\ } 		% Numbered format
+	{}                                								% Numberless format
+	{} 															    % Filler
+
+
+
+
+% Math
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[upright=false]{derivative}
+
+
+% Comment these lines if you want to use different fonts.
+% Note that arxetype.tex has the font names hardcoded; you may want to remove that.
+\usepackage[p, osf]{cochineal}
+\usepackage[varqu, varl]{zi4}
+\usepackage[cochineal, varg, upint]{newtxmath}
+
+%% Uncomment to use MLModern
+%\usepackage{mlmodern}
+
+%% Uncomment if you are not using newtxmath.
+%\newcommand{\uppi}{\pi}
+
+%% Uncomment if you are not using osf.
+%\newcommand{\lfstyle}{\relax}
+
+\usepackage{microtype}
+
+
+% Colors
+\usepackage{xcolor}
+\newcommand{\linkcolor}{red!50!black}
+\newcommand{\urlcolor}{blue!50!black}
+
+
+% List and Table Environments
+\usepackage[shortlabels]{enumitem}
+
+% Manual bibliography stuff
+\newcommand{\citem}[2]{\item\hypertarget{#1}{#2}}
+\renewcommand{\cite}[2]{\hyperlink{#1}{#2}}
+
+\usepackage{booktabs}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor={\linkcolor},
+	urlcolor={\urlcolor},
+	pdfpagemode=UseNone,
+}
+
+
+% Titlepage
+\makeatletter
+\newcommand{\desc}[1]{\gdef\@desc{#1}}
+\newcommand{\affil}[1]{\gdef\@affil{#1}}
+
+\renewcommand{\maketitle}{
+	\thispagestyle{empty}
+	\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+	\parbox[t]{0.75\linewidth}{\footnotesize\@desc} \hfill \@date
+	\vspace{1pc}
+
+	{
+		\centering
+		{\Large \scshape \@title}
+
+		{\@author \footnotemark}
+
+	}
+	\footnotetext{\@affil}
+	\hrulefill
+}
+
+% Remove the content title.
+\renewcommand\tableofcontents{
+		\@starttoc{toc}
+}
+
+\AtBeginDocument{
+	\hypersetup{
+		pdftitle=\@title,
+		pdfauthor=\@author,
+		pdfsubject=Statistical Mechanics,
+		pdfkeywords={Statistical Mechanics, Entropy, Jaynes, Probability}
+	}
+}
+\makeatother
+
+
+
+% Macros
+\newcommand{\given}{\,\vert\,}
+\newcommand{\grad}{\mathop{}\!\nabla}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\inv}{\ensuremath{^{-1}}}
+
+\let\oldbar\bar
+\renewcommand{\bar}[1]{\overline{#1}}
+
+
+
+\newcommand{\dd}{\ensuremath{\mathop{}\!d}}
+\newcommand{\ddel}{\ensuremath{\mathop{}\!\delta}}
+\newcommand{\Ddel}{\ensuremath{\mathop{}\!\Delta}}
+
+
+% Spacing around \left and \right
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+\DeclarePairedDelimiter{\abs}{|}{|}
+\DeclarePairedDelimiter{\mean}{\langle}{\rangle}
+\DeclareMathOperator{\tgrad}{grad}
+\DeclareMathOperator{\Tr}{Tr}
+
+
+
+\newcommand{\arxetype}{A\kern-0.07em
+	\lower0.5ex\hbox{R}\kern-0.12em
+	X\kern-0.11em
+	\lower0.5ex\hbox{\reflectbox{E}}\kern-0.18em
+	T\kern-0.2em
+	\raise-0.5ex\hbox{Y}\kern-0.08em
+	\raise-0.5ex\hbox{P}\kern-0.08em
+	\raise-0.5ex\hbox{E}}
+
+
+% -----------------------------------------------------------------------------
+% Document Begins
+
+\title{Where do we stand on Maximum Entropy?}
+\author{E. T. Jaynes}
+\affil{{Wayman Crow Professor of Physics, Washington University, St. Louis, Mo. 63130}}
+\desc{
+	To be presented at the Maximum Entropy Formalism Conference,\\
+	Massachusetts Institute of Technology, May 2-4, 1978.
+}
+\date{April 1978}
+
+
+\begin{document}
+
+	\newgeometry{
+		hmarginratio=1:1,
+		bottom=0.75in,
+		top=0.8in,
+		textwidth=2.5\alphabet,
+		}
+	\maketitle
+
+	\setcounter{secnumdepth}{1}
+	\tableofcontents
+
+	\restoregeometry
+
+	\clearpage
+	\pagestyle{main}
+	\include{summary.tex}
+
+	\include{secA.tex}
+
+	\include{secB.tex}
+
+	\include{secC.tex}
+
+	\include{secD.tex}
+
+	\include{biblio.tex}
+
+
+	\include{arxetype.tex}
+
+\end{document}
