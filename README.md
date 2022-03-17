@@ -17,7 +17,7 @@ Computer Modern, or `mlmodern` (I personally prefer how this looks to the defaul
     ```
 They are already in the source, commented out (perhaps the font changing can be handled in a better manner).
 * Sectioning and formatting is not the same as the original source (which is a bit limited since it was probably made with a typewriter). Content, however, is very close to 1:1. Exceptions include
-    * Equation Numbering. Both Section A and B have skipped a number (understandable, this was probably done manually). I haven't been faithful to the numbers in the original source.
+    * ~~Equation Numbering~~. Equation numbering now follows the original. A19 and B33 are skipped.
     * Corrected some equation formatting (for example, Equation D76: `x'\beta` -> `x'_\beta`)
     * Correction in the References: Jeffries -> Jeffreys
     * Headers have been changed to reflect the current section (instead of the author name).
